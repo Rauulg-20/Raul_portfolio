@@ -301,7 +301,7 @@ h3{font-size:var(--fs-h3)}
 
 .about__stat{display:flex;flex-direction:column;gap:1.5rem}
 
-.about__photo{position:relative;max-width:320px;width:100%;margin-inline:auto}
+.about__photo{position:relative;max-width:360px;width:100%;margin-inline:auto}
 .about__photo::before{
   content:'';position:absolute;inset:-10px;z-index:-1;
   border:1px solid var(--border-accent);border-radius:calc(var(--radius-lg) + 10px);
@@ -311,7 +311,7 @@ h3{font-size:var(--fs-h3)}
   background:radial-gradient(circle, var(--accent-dim), transparent 70%);filter:blur(30px);
 }
 .about__photo img{
-  width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius-lg);
+  width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:var(--radius-lg);
   border:1px solid var(--border);box-shadow:var(--shadow-md);background:var(--bg-surface-2);
 }
 
