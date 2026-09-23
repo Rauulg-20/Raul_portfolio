@@ -358,7 +358,7 @@ h3{font-size:var(--fs-h3)}
 .projects-grid>*{min-width:0}
 
 .project-card{border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden}
-.project-card--featured{background:var(--bg-surface);display:grid;grid-template-columns:1fr}
+.project-card--featured{background:var(--bg-surface);display:grid;grid-template-columns:1fr;align-items:stretch}
 .project-card__visual{background:var(--bg-surface-3);display:flex;align-items:center;justify-content:center;padding:2rem}
 .project-card__content{padding:2.25rem}
 .project-card__label{font-size:.8125rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
@@ -374,7 +374,7 @@ h3{font-size:var(--fs-h3)}
 .project-card__content--center h3{font-size:1.25rem}
 .project-card__content--center p{margin-bottom:.75rem}
 
-.browser-mock{width:100%;max-width:380px;background:var(--bg-surface-2);border:1px solid var(--border-strong);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-md)}
+.browser-mock{width:100%;max-width:540px;background:var(--bg-surface-2);border:1px solid var(--border-strong);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-md)}
 .browser-mock__bar{display:flex;align-items:center;gap:.35rem;padding:.65rem .75rem;background:var(--bg-surface-3);border-bottom:1px solid var(--border)}
 .browser-mock__dot{width:7px;height:7px;border-radius:50%;background:var(--text-tertiary);opacity:.5}
 .browser-mock__url{flex:1;margin-left:.4rem;background:var(--bg-surface);border-radius:var(--radius-full);padding:.3rem .75rem;font-size:.6875rem;color:var(--text-tertiary);text-align:center;font-family:var(--font-mono)}
@@ -383,6 +383,9 @@ h3{font-size:var(--fs-h3)}
 .browser-mock__block--hero{height:44px;background:linear-gradient(120deg, var(--accent-dim), var(--bg-surface))}
 .browser-mock__block--grid{display:flex;gap:.5rem;height:52px;background:none}
 .browser-mock__block--grid span{flex:1;border-radius:var(--radius-sm);background:var(--bg-surface)}
+
+.browser-mock__body--screenshot{padding:0;display:block;line-height:0}
+.browser-mock__body--screenshot img{width:100%;height:auto;display:block}
 
 @media (min-width:768px){
   .project-card--featured{grid-template-columns:1fr 1fr}
