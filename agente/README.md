@@ -32,7 +32,15 @@ npx wrangler secret put ANTHROPIC_API_KEY   # pega la clave cuando la pida (no s
 npm run deploy
 ```
 
-Al terminar, wrangler muestra la dirección del Worker, del estilo `https://asistente-raul.TU-SUBDOMINIO.workers.dev`. Ábrela en el navegador: debe decir *"Asistente de Raúl Gil Gonzalez: funcionando."*
+Si tu cuenta de Cloudflare aún no tiene un subdominio `workers.dev` (forma parte de la URL del Worker), `npm run deploy` te pedirá crear uno. Responde las tres preguntas hasta el final:
+
+1. *Would you like to register a workers.dev subdomain now?* → `y`
+2. *What would you like your workers.dev subdomain to be?* → un nombre con minúsculas, números y guiones, sin `_` (por ejemplo, `raulgil`)
+3. *Creating a workers.dev subdomain … Ok to proceed?* → `y`
+
+Si cierras la terminal antes de la última, el subdominio no se crea y la URL no existe: vuelve a ejecutar `npm run deploy`. Si no te pregunta nada, es que tu cuenta ya tiene subdominio.
+
+Al terminar, wrangler muestra la dirección del Worker en una línea que empieza por `https://`, del estilo `https://asistente-raul.TU-SUBDOMINIO.workers.dev` (primero el nombre del Worker y después tu subdominio; `https://TU-SUBDOMINIO.workers.dev` a secas no lleva a ningún sitio). Cópiala tal cual y ábrela en el navegador: debe decir *"Asistente de Raúl Gil Gonzalez: funcionando."* Si el subdominio es nuevo, puede tardar unos minutos en responder.
 
 ## Activarlo en la web
 
@@ -86,7 +94,7 @@ Ejecuta `npm run logs` (desde `agente/`) y escribe un mensaje en el chat: verás
 | "No he podido conectar" | URL del Worker mal copiada, o la web no está en `ALLOWED_ORIGINS` | Copia la URL exacta del despliegue; en `wrangler.toml`, el origen es `https://rauulg-20.github.io` (sin barra ni ruta) |
 | "No he podido responder ahora mismo" | Clave mal guardada, caducada o sin workspace; sin créditos; límite de gasto alcanzado | El registro (`npm run logs`) dice cuál. Para cambiar la clave: `npx wrangler secret put ANTHROPIC_API_KEY` |
 | `npm run deploy` falla por `ratelimits` | El limitador por IP no está disponible en tu cuenta | Borra el bloque `[[ratelimits]]` de `wrangler.toml`: el Worker funciona igual, sin ese límite |
-| wrangler pide registrar un subdominio `workers.dev` | Primera vez que despliegas | Elige uno (por ejemplo, `raulgil`); forma parte de la URL del Worker |
+| La URL del Worker da *No se puede acceder a este sitio* (`DNS_PROBE_FINISHED_NXDOMAIN`) | URL incompleta o con otro subdominio; el subdominio `workers.dev` no llegó a crearse (el deploy avisó *You need to register a workers.dev subdomain*); o se acaba de crear | Copia la URL exacta que muestra wrangler al final del deploy. Si no se creó, repite `npm run deploy` y responde las tres preguntas (ver *Desplegar el Worker*). Si es nuevo, espera: tu ordenador puede recordar el fallo hasta 30 min (`ipconfig /flushdns`, o pruébalo con los datos del móvil) |
 
 ## Privacidad
 
