@@ -383,6 +383,7 @@ h3{font-size:var(--fs-h3)}
 .about__text h2{margin-bottom:1.25rem}
 .about__text p{margin-bottom:1.15rem;font-size:var(--fs-md)}
 .about__text p:last-child{margin-bottom:0}
+#sobre-mi{overflow-x:clip}
 .about__side{display:flex;flex-direction:column;gap:1.75rem}
 
 .about__photo{position:relative;max-width:360px;width:100%;margin:0 auto}
