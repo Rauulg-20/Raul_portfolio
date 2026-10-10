@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://raulgilgonzalez.github.io/sitemap.xml
+Sitemap: https://rauulg-20.github.io/Raul_portfolio/sitemap.xml
