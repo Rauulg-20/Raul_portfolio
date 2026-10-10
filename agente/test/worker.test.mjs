@@ -208,6 +208,38 @@ test('la API rechaza la petición (400) → error de historial', async () => {
   assert.equal((await r.json()).error, 'historial');
 });
 
+test('límite de gasto alcanzado (400 de la API) → aviso genérico, sin pedir reiniciar', async () => {
+  simularClaude({
+    status: 400,
+    body: { type: 'error', error: { type: 'invalid_request_error', message: 'You have reached your specified API usage limits. You will regain access on 2026-11-01 at 00:00 UTC.' } },
+  });
+  const r = await worker.fetch(peticion({ history: [], message: 'hola' }), env());
+  assert.equal(r.status, 503);
+  const d = await r.json();
+  assert.equal(d.error, 'limite_gasto');
+  assert.match(d.message, /WhatsApp/);
+});
+
+test('ANTHROPIC_WORKSPACE_ID añade la cabecera anthropic-workspace-id (y si no está, no se envía)', async () => {
+  simularClaude(mensaje([TEXTO]));
+  await worker.fetch(peticion({ history: [], message: 'hola' }), env({ ANTHROPIC_WORKSPACE_ID: 'wrkspc_prueba' }));
+  assert.equal(llamadas[0].headers.get('anthropic-workspace-id'), 'wrkspc_prueba');
+
+  simularClaude(mensaje([TEXTO]));
+  await worker.fetch(peticion({ history: [], message: 'hola' }), env());
+  assert.equal(llamadas[0].headers.get('anthropic-workspace-id'), null);
+});
+
+test('clave sin workspace (400 de la API) → error de configuración, no de historial', async () => {
+  simularClaude({
+    status: 400,
+    body: { type: 'error', error: { type: 'invalid_request_error', message: 'anthropic-workspace-id is required when authenticating with an identity-linked API key; send the id of the workspace this request acts in.' } },
+  });
+  const r = await worker.fetch(peticion({ history: [], message: 'hola' }), env());
+  assert.equal(r.status, 500);
+  assert.equal((await r.json()).error, 'configuracion');
+});
+
 test('limitador por IP: si dice que no → 429 sin llamar a Claude', async () => {
   simularClaude(mensaje([TEXTO]));
   const LIMITADOR = { limit: async () => ({ success: false }) };

@@ -16,9 +16,9 @@ El historial de cada conversación se guarda en el navegador del visitante (`ses
 ## Lo que necesitas (una sola vez)
 
 1. **Cuenta en la plataforma de Claude** — https://platform.claude.com
-   - Añade un método de pago o compra créditos.
-   - Crea una clave de API (empieza por `sk-ant-`). Guárdala bien: no se vuelve a mostrar.
-   - **Pon un límite de gasto mensual** en los ajustes de la cuenta (por ejemplo, 10 $). Es la protección más importante: pase lo que pase, nunca gastarás más de esa cifra.
+   - Compra créditos en [Settings → Billing](https://platform.claude.com/settings/billing) (el uso de la API es de prepago).
+   - En esa misma página, sección **Spend limits**, pulsa **Set limit** y pon un límite mensual (por ejemplo, 10 $). Es la protección más importante: pase lo que pase, nunca gastarás más de esa cifra.
+   - Crea la clave en [Settings → API keys](https://platform.claude.com/settings/keys) → **Create key**: ponle un nombre (`asistente-web`), en **Expiration** elige **Never** (si caduca, el chat deja de funcionar), en **Linked account** déjate a ti mismo y **asóciala a un workspace concreto** (por ejemplo, el *Default*). Si no la asocias a un workspace, la API rechaza las peticiones (alternativa: poner su ID en `ANTHROPIC_WORKSPACE_ID` en `wrangler.toml`). Copia la clave (`sk-ant-api…`) y guárdala: no se vuelve a mostrar.
 2. **Cuenta gratuita en Cloudflare** — https://dash.cloudflare.com/sign-up
 
 ## Desplegar el Worker
@@ -76,13 +76,25 @@ Son estimaciones: el razonamiento interno del modelo también se cobra como sali
 - La comprobación del origen frena a otras webs, pero no a alguien que llame al Worker desde un script: por eso el **límite de gasto** de la plataforma de Claude es imprescindible. Si algún día notas abuso, se puede añadir Cloudflare Turnstile (un captcha invisible).
 - **Respaldo ante rechazos:** si los filtros de seguridad de Claude rechazan un mensaje (muy improbable en este uso), otro modelo responde automáticamente (`fallbacks: 'default'` en `src/index.js`). Para quitarlo, borra ese parámetro y su beta en `BETAS`.
 
+## Si algo falla
+
+Ejecuta `npm run logs` (desde `agente/`) y escribe un mensaje en el chat: verás qué pasa en cada petición.
+
+| Síntoma | Causa probable | Solución |
+|---|---|---|
+| No aparece el botón del chat | `data-endpoint` vacío, o la web aún no se ha actualizado | Revisa `index.html`; espera 1–2 minutos tras el `push` y recarga con Ctrl+F5 |
+| "No he podido conectar" | URL del Worker mal copiada, o la web no está en `ALLOWED_ORIGINS` | Copia la URL exacta del despliegue; en `wrangler.toml`, el origen es `https://rauulg-20.github.io` (sin barra ni ruta) |
+| "No he podido responder ahora mismo" | Clave mal guardada, caducada o sin workspace; sin créditos; límite de gasto alcanzado | El registro (`npm run logs`) dice cuál. Para cambiar la clave: `npx wrangler secret put ANTHROPIC_API_KEY` |
+| `npm run deploy` falla por `ratelimits` | El limitador por IP no está disponible en tu cuenta | Borra el bloque `[[ratelimits]]` de `wrangler.toml`: el Worker funciona igual, sin ese límite |
+| wrangler pide registrar un subdominio `workers.dev` | Primera vez que despliegas | Elige uno (por ejemplo, `raulgil`); forma parte de la URL del Worker |
+
 ## Privacidad
 
 Los mensajes del chat se envían a la API de Claude (Anthropic) para generar la respuesta; el Worker no los guarda. El propio chat avisa de que no se compartan datos sensibles. Si el asistente va a recoger datos personales (nombres, teléfonos…), conviene añadir a la web una página de política de privacidad que lo mencione.
 
 ## Probar en local
 
-- **Sin clave ni red:** `npm test` ejecuta 16 pruebas del Worker con la API de Claude simulada.
+- **Sin clave ni red:** `npm test` ejecuta 19 pruebas del Worker con la API de Claude simulada.
 - **Con clave, de verdad:** copia `.dev.vars.example` como `.dev.vars` (está en `.gitignore`), pon tu clave y ejecuta `npm run dev` (el Worker queda en `http://localhost:8787`). En otra terminal, desde la raíz del proyecto, `python -m http.server 8000`, y pon temporalmente `data-endpoint="http://localhost:8787"` en `index.html` (sin subir ese cambio).
 
 ## Archivos

@@ -13,6 +13,8 @@ ALLOWED_ORIGINS = "https://rauulg-20.github.io,http://localhost:8000,http://127.
 MODEL = "claude-opus-5-5"
 # Cuánto razona antes de responder: low | medium | high. "low" basta para un chat.
 EFFORT = "low"
+# Solo si tu clave NO está asociada a un workspace: su ID (Settings → Workspaces).
+# ANTHROPIC_WORKSPACE_ID = "wrkspc_..."
 
 # Máximo de mensajes por IP: 10 por minuto.
 [[ratelimits]]

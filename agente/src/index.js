@@ -126,7 +126,13 @@ export default {
 
     // --- Llamar a Claude ---
     const mensajeVisitante = { role: 'user', content: mensaje };
-    const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, maxRetries: 1, timeout: 30_000 });
+    const client = new Anthropic({
+      apiKey: env.ANTHROPIC_API_KEY,
+      maxRetries: 1,
+      timeout: 30_000,
+      // Solo hace falta si la clave no se creó asociada a un workspace concreto.
+      ...(env.ANTHROPIC_WORKSPACE_ID && { defaultHeaders: { 'anthropic-workspace-id': env.ANTHROPIC_WORKSPACE_ID } }),
+    });
 
     let respuesta;
     try {
@@ -242,13 +248,25 @@ function errorDeClaude(err, cors) {
     return json({ error: 'ocupado', message: TEXTOS.ocupado }, 503, cors);
   }
   if (err instanceof Anthropic.BadRequestError) {
-    // Suele ser un historial alterado o inválido; también aparece aquí si se
-    // agota el límite de gasto de la cuenta. El detalle queda en el registro.
+    // El límite de gasto que pones en la plataforma de Claude llega como un 400
+    // cuyo mensaje empieza por "You have reached your specified ... API usage limits".
+    if (/usage limits/i.test(err.message)) {
+      console.error(`Límite de gasto de la cuenta alcanzado: ${err.message}`);
+      return json({ error: 'limite_gasto', message: TEXTOS.error }, 503, cors);
+    }
+    if (/anthropic-workspace-id/i.test(err.message)) {
+      console.error(
+        'La clave de API no está asociada a un workspace: crea una clave eligiendo un workspace concreto, ' +
+          `o define ANTHROPIC_WORKSPACE_ID en wrangler.toml. Detalle: ${err.message}`
+      );
+      return json({ error: 'configuracion', message: TEXTOS.error }, 500, cors);
+    }
+    // Si no, suele ser un historial alterado o inválido. El detalle queda en el registro.
     console.error(`Petición rechazada por la API (400): ${err.message}`);
     return json({ error: 'historial', message: TEXTOS.historial }, 400, cors);
   }
   if (err instanceof Anthropic.AuthenticationError || err instanceof Anthropic.PermissionDeniedError) {
-    console.error(`Clave de API no válida o sin permisos (${err.status}): ${err.message}`);
+    console.error(`Clave de API no válida, caducada o sin permisos (${err.status}): ${err.message}`);
     return json({ error: 'configuracion', message: TEXTOS.error }, 500, cors);
   }
   if (err instanceof Anthropic.APIError) {
