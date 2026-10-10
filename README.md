@@ -38,6 +38,8 @@ Todo el movimiento está ligado al scroll o al ratón — nada se mueve solo —
 ├── 404.html            página de error 404
 ├── css/styles.css      estilos
 ├── js/main.js          interactividad
+├── js/asistente.js     chat del asistente de IA (se activa con la URL del Worker)
+├── agente/             Worker de Cloudflare del asistente (ver agente/README.md)
 ├── assets/             favicon, iconos, foto, captura de Nevila, imagen para redes (og-image.png)
 ├── robots.txt
 ├── sitemap.xml
@@ -92,6 +94,12 @@ Los textos y precios están escritos directamente en `index.html`; un "buscar en
 - Imagen para redes: `assets/og-image.png` (1200 × 630 px).
 
 Si usas otro nombre de archivo, actualiza el `src` correspondiente en `index.html`.
+
+## Asistente de IA (agente de atención al cliente)
+
+La web incluye un chat con IA que responde a los visitantes con la información del negocio y, cuando quieren contratar, les prepara un mensaje para enviarlo por WhatsApp. Funciona con un Worker de Cloudflare que guarda la clave de la API de Claude (GitHub Pages no puede guardar secretos).
+
+Está **desactivado** hasta que despliegues el Worker y pegues su URL en el `data-endpoint` del `<script src="js/asistente.js">` de `index.html`. Pasos, costes y seguridad: **[agente/README.md](agente/README.md)**.
 
 ## Añadir proyectos al portfolio
 

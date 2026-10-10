@@ -1,0 +1,24 @@
+# Configuración del Worker del asistente (Cloudflare).
+# La clave de la API NO va aquí: se guarda como secreto con
+#   npx wrangler secret put ANTHROPIC_API_KEY
+
+name = "asistente-raul"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Webs que pueden usar el asistente (separadas por comas, sin barra final).
+ALLOWED_ORIGINS = "https://rauulg-20.github.io,http://localhost:8000,http://127.0.0.1:8000"
+# Modelo de Claude. claude-haiku-5-5 es mucho más barato (ver README).
+MODEL = "claude-opus-5-5"
+# Cuánto razona antes de responder: low | medium | high. "low" basta para un chat.
+EFFORT = "low"
+
+# Máximo de mensajes por IP: 10 por minuto.
+[[ratelimits]]
+name = "LIMITADOR"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 10
+  period = 60

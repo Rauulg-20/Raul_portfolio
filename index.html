@@ -11,6 +11,8 @@
   Webs:        "99 €" · "199 €" · "399 €" · mantenimiento "30 €/mes"
   Agentes IA:  "350 €" + "49 €/mes" · agente a medida: precio acordado
   Packs:       "399 €" · "499 €" · "699 €" + "69 €/mes"
+  Asistente:   URL del Worker en data-endpoint (al final del <body>);
+               sus precios/textos están en agente/src/conocimiento.js
   Guía completa de personalización en README.md
   ============================================================
 -->
@@ -366,6 +368,10 @@ Ingeniería Informática
 <span><strong>Te avisa cuando hace falta</strong>Si no sabe algo o el cliente quiere hablar contigo, te deja sus datos y un resumen.</span>
 </li>
 </ol>
+<div class="agents__try" data-asistente-cta hidden>
+<p><strong>Pruébalo ahora:</strong> el asistente de esta web es un agente de atención al cliente como los que ofrezco.</p>
+<button type="button" class="btn btn--primary btn--sm" data-open-assistant>Hablar con el asistente<svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg></button>
+</div>
 </div>
 
 <div class="agents__demo" data-reveal data-reveal-delay="1">
@@ -879,5 +885,7 @@ Ingeniería Informática
 </footer>
 
 <script src="js/main.js" defer></script>
+<!-- Asistente de IA: pega en data-endpoint la URL de tu Worker (ver agente/README.md). Vacío = desactivado. -->
+<script src="js/asistente.js" data-endpoint="" defer></script>
 </body>
 </html>
