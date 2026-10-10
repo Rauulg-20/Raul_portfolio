@@ -29,7 +29,7 @@ Todo el movimiento está ligado al scroll o al ratón — nada se mueve solo —
 | Banda de texto a dos velocidades | `data-velocity-row="factor"` en cada fila (el signo marca la dirección). |
 | Foco de luz e inclinación 3D en tarjetas (solo escritorio) | `data-spotlight` y `data-tilt`. |
 | Aparición al hacer scroll | `data-reveal` (y `data-reveal-delay="1..4"` para escalonar). |
-| Contador de la nota y conversación de ejemplo que se escribe sola | Se activan tras el primer scroll de una persona; un buscador que renderice la página ve siempre el estado final (12,928 y la conversación completa). |
+| Conversación de ejemplo que se escribe sola | Se activa tras el primer scroll de una persona; un buscador que renderice la página ve siempre la conversación completa. |
 
 ## Estructura
 

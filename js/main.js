@@ -297,9 +297,9 @@
     });
   }
 
-  // Los efectos "de una sola vez" (contador y chat) solo se preparan tras el primer
-  // scroll de una persona: así un buscador que renderice la página ve siempre el
-  // contenido final (12,928 y la conversación completa), nunca un estado a medias.
+  /* ---------- Conversación de ejemplo que se escribe sola ---------- */
+  // Solo se prepara tras el primer scroll de una persona: así un buscador que
+  // renderice la página ve siempre la conversación completa, nunca a medias.
   var isOnScreen = function (el) {
     var r = el.getBoundingClientRect();
     return r.top < window.innerHeight && r.bottom > 0;
@@ -308,35 +308,6 @@
     window.addEventListener('scroll', fn, { once: true, passive: true });
   };
 
-  /* ---------- Contador (nota de acceso) ---------- */
-  var counters = $$('[data-count-to]');
-  if (counters.length && motionOK && 'IntersectionObserver' in window && window.Intl) {
-    var runCounter = function (el) {
-      var to = parseFloat(el.getAttribute('data-count-to'));
-      var decimals = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
-      var format = new Intl.NumberFormat('es-ES', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-      var finalText = el.textContent;
-      var start = null;
-      var duration = 1600;
-      var step = function (ts) {
-        if (start === null) start = ts;
-        var p = Math.min((ts - start) / duration, 1);
-        el.textContent = format.format(to * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step); else el.textContent = finalText;
-      };
-      requestAnimationFrame(step);
-    };
-    onFirstScroll(function () {
-      var counterObserver = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { observer.unobserve(entry.target); runCounter(entry.target); }
-        });
-      }, { threshold: 0.6 });
-      counters.forEach(function (c) { if (!isOnScreen(c)) counterObserver.observe(c); });
-    });
-  }
-
-  /* ---------- Conversación de ejemplo que se escribe sola ---------- */
   var demo = $('[data-chat-demo]');
   if (demo && motionOK && 'IntersectionObserver' in window) {
     var chatBody = $('.chat-demo__body', demo);
