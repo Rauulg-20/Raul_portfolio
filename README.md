@@ -80,8 +80,14 @@ Los textos y precios están escritos directamente en `index.html`; un "buscar en
 | Instagram | `rauulg_20` | Enlaces a Instagram |
 | Email | `rauulg2008@gmail.com` | Botones de email |
 | Precios webs | `99 €`, `199 €`, `399 €`, `30 €/mes` | Pestaña "Webs" de `#precios`, pilar de servicios |
-| Precios agentes | `350 €`, `49 €/mes` | Sección `#agentes`, pestaña "Agentes IA", pilar de servicios, FAQ |
-| Packs | `399 €`, `499 €`, `699 €`, `69 €/mes` y los importes "Por separado" / "Ahorras" | Pestaña "Packs" |
+| Precios agentes | Captación `1.200 €` + `129 €/mes`, reservas `990 €` + `99 €/mes`, atención `690 €` + `79 €/mes` | Nota de `#agentes`, pestaña "Agentes IA", pilar de servicios, bloque editable de `index.html` |
+| Packs | `690 €`, `790 €`, `950 €`, `89 €/mes` y los importes "Por separado" / "Ahorras" | Pestaña "Packs" |
+
+> **Si cambias un precio, cámbialo en los dos sitios.** Los precios también viven dentro
+> del asistente, en `agente/src/conocimiento.js`, porque es lo que responde cuando alguien
+> le pregunta cuánto cuesta. Si solo actualizas la web, el agente cotiza los precios
+> viejos. Y para que el cambio salga en vivo hay que volver a desplegar el worker:
+> `cd agente && npm run deploy`.
 
 **Mensajes de WhatsApp:** cada botón lleva su mensaje predefinido en el atributo `data-wa` (por ejemplo `data-wa="Hola Raúl, me interesa el agente de reservas."`). Para cambiar un mensaje, edita ese texto; si cambias un precio, revisa también el `data-wa` del botón correspondiente, que lo menciona.
 

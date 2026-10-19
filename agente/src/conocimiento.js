@@ -52,7 +52,11 @@ Un agente de IA es un asistente que conversa por escrito con los clientes de un 
 - Agente de atención al cliente: responde las preguntas habituales (horarios, servicios, precios, cómo llegar...) a cualquier hora y con el tono del negocio, y pasa la conversación cuando hace falta. Ideal para tiendas, clínicas, academias o restaurantes.
 - Agente de captación y clasificación de clientes: conversa con quien visita la web, recoge su nombre, su contacto y lo que necesita, lo clasifica por interés y urgencia, y envía cada contacto con un resumen. Ideal para servicios profesionales, inmobiliarias, reformas o formación.
 - Agente de reservas: gestiona reservas y citas por conversación, comprueba la disponibilidad y confirma cada reserva. La conexión con la agenda o el sistema de reservas del negocio se valora en cada caso. Ideal para restaurantes, peluquerías, clínicas o centros deportivos.
-- Precio de cada uno de estos tres agentes: 350 € de pago único más 49 €/mes de mantenimiento. El mantenimiento incluye que siga funcionando, actualizar su información cuando cambie algo del negocio y pequeños ajustes; los cambios grandes o las funciones nuevas se presupuestan aparte.
+- Precios de los tres agentes (pago único más mantenimiento mensual):
+  - Agente de captación y clasificación de clientes: 1.200 € + 129 €/mes. Es el principal y el que más trabajo hace en una empresa que vive de contactos entrantes.
+  - Agente de reservas: 990 € + 99 €/mes. La conexión con la agenda o el sistema de reservas del negocio se valora aparte.
+  - Agente de atención al cliente: 690 € + 79 €/mes.
+- El mantenimiento incluye que el agente siga funcionando, actualizar su información cuando cambie algo del negocio y pequeños ajustes; los cambios grandes o las funciones nuevas se presupuestan aparte.
 - Agente a medida: para lo que el negocio necesite y no encaje en los anteriores. El precio se acuerda con el cliente antes de empezar, según lo que tenga que hacer y las herramientas con las que se tenga que conectar.
 - Las integraciones complejas o un volumen de uso muy alto pueden requerir un presupuesto personalizado.
 - No hace falta tener web para tener un agente: si el negocio ya tiene web, normalmente se puede integrar en ella; si no, puede contratarlo junto a una web nueva con uno de los packs.
@@ -61,10 +65,10 @@ Un agente de IA es un asistente que conversa por escrito con los clientes de un 
 
 ## Packs web + agente (con descuento)
 
-Cada pack incluye la web, un agente a elegir (atención al cliente, captación de clientes o reservas) y el mantenimiento de la web y del agente:
-- Sencilla + Agente: 399 € + 69 €/mes (por separado serían 449 € + 79 €/mes).
-- Medium + Agente: 499 € + 69 €/mes (por separado serían 549 € + 79 €/mes). Es el pack que Raúl recomienda.
-- Premium + Agente: 699 € + 69 €/mes (por separado serían 749 € + 79 €/mes).
+Cada pack incluye la web, el agente de atención al cliente y el mantenimiento de la web y del agente. Si el cliente prefiere el agente de captación o el de reservas, se cambia pagando la diferencia:
+- Sencilla + Agente: 690 € + 89 €/mes (por separado serían 789 € + 109 €/mes). La web Sencilla sale incluida.
+- Medium + Agente: 790 € + 89 €/mes (por separado serían 889 € + 109 €/mes). Es el pack que Raúl recomienda.
+- Premium + Agente: 950 € + 89 €/mes (por separado serían 1.089 € + 109 €/mes).
 
 ## Cómo trabaja
 
