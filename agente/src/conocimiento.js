@@ -87,4 +87,4 @@ Cada pack incluye la web, el agente de atención al cliente y el mantenimiento d
 
 - WhatsApp: +34 658 95 39 35 (la forma más rápida).
 - Instagram: @rauulg_20
-- Email: rauulg2008@gmail.com`;
+- Email: rauul.digital@gmail.com`;

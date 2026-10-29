@@ -78,7 +78,7 @@ Los textos y precios están escritos directamente en `index.html`; un "buscar en
 | Nombre | `Raúl Gil Gonzalez` | Título, cabecera, hero, footer, metadatos |
 | WhatsApp | `34658953935` | `js/main.js` → `WHATSAPP_NUMBER` (lo usan todos los botones de WhatsApp) y los `href` de respaldo en `index.html` y `404.html` |
 | Instagram | `rauulg_20` | Enlaces a Instagram |
-| Email | `rauulg2008@gmail.com` | Botones de email |
+| Email | `rauul.digital@gmail.com` | Botones de email |
 | Precios webs | `99 €`, `199 €`, `399 €`, `30 €/mes` | Pestaña "Webs" de `#precios`, pilar de servicios |
 | Precios agentes | Captación `1.200 €` + `129 €/mes`, reservas `990 €` + `99 €/mes`, atención `690 €` + `79 €/mes` | Nota de `#agentes`, pestaña "Agentes IA", pilar de servicios, bloque editable de `index.html` |
 | Packs | `690 €`, `790 €`, `950 €`, `89 €/mes` y los importes "Por separado" / "Ahorras" | Pestaña "Packs" |
