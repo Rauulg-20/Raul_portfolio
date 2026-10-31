@@ -15,22 +15,23 @@
   Asistente:   URL del Worker en data-endpoint (al final del <body>);
                sus precios/textos están en agente/src/conocimiento.js
   Guía completa de personalización en README.md
+  Dirección de arte y por qué de cada decisión visual en DESIGN.md
   ============================================================
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Agentes de IA para empresas — Raúl Gil Gonzalez · Cáceres</title>
-<meta name="description" content="Agentes de IA que convierten las visitas de tu web en contactos cualificados y te dicen a quién llamar primero. Para empresas que viven de contactos entrantes.">
+<meta name="description" content="Agentes de IA que conversan con quien entra en tu web, recogen lo que necesita y te lo envían clasificado por urgencia. Para empresas que viven de contactos entrantes. También desarrollo páginas web. Cáceres, en remoto para toda España.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Raúl Gil Gonzalez">
-<meta name="theme-color" content="#070a12">
+<meta name="theme-color" content="#F4F2ED">
 <link rel="canonical" href="https://rauulg-20.github.io/Raul_portfolio/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Raúl Gil Gonzalez — Agentes de IA para empresas">
+<meta property="og:site_name" content="Raúl Gil Gonzalez — Agentes de IA y desarrollo web">
 <meta property="og:title" content="Agentes de IA para empresas — Raúl Gil Gonzalez · Cáceres">
-<meta property="og:description" content="El agente conversa con quien entra en tu web, recoge lo que necesita y te lo envía clasificado por urgencia. Para asesorías, inmobiliarias, reformas y servicios profesionales.">
+<meta property="og:description" content="El agente conversa con quien entra en tu web, recoge lo que necesita y te lo envía clasificado por urgencia: abres el correo y sabes a quién llamar primero.">
 <meta property="og:url" content="https://rauulg-20.github.io/Raul_portfolio/">
 <meta property="og:image" content="https://rauulg-20.github.io/Raul_portfolio/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -51,10 +52,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 
-<!-- Fuentes -->
+<!-- Fuentes: IBM Plex Sans (display en 300) + IBM Plex Mono (datos). Ver DESIGN.md -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/styles.css">
 
@@ -83,66 +84,47 @@
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
 
-<!-- ============ SPRITE DE ICONOS ============ -->
+<!-- ============ SPRITE DE ICONOS ============
+     Solo los que se usan. arrow-right, arrow-up, bot, close y plus los
+     necesita js/asistente.js; menu y close los necesita js/main.js. -->
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
 <defs>
-<symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
 <symbol id="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
 <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
 <symbol id="icon-arrow-right" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
 <symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
 <symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
 <symbol id="icon-external" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
-<symbol id="icon-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 6 12 13 22 6"/></symbol>
-<symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
-<symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><polyline points="8.5 12.5 7 21 12 18 17 21 15.5 12.5"/></symbol>
-<symbol id="icon-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
-<symbol id="icon-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
-<symbol id="icon-devices" viewBox="0 0 24 24"><rect x="3" y="4" width="14" height="10" rx="1"/><rect x="14" y="10" width="7" height="11" rx="1.5"/></symbol>
-<symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
-<symbol id="icon-upload" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="4" y1="21" x2="20" y2="21"/></symbol>
-<symbol id="icon-shield" viewBox="0 0 24 24"><polygon points="12 3 19 6 19 12 12 21 5 12 5 6"/><polyline points="9 12 11 14 15 10"/></symbol>
-<symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
-<symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
-<symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></symbol>
-<symbol id="icon-funnel" viewBox="0 0 24 24"><polygon points="3 4 21 4 14 12.5 14 19 10 21 10 12.5 3 4"/></symbol>
-<symbol id="icon-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><line x1="12" y1="4.5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/><line x1="9" y1="13.5" x2="9" y2="14.5"/><line x1="15" y1="13.5" x2="15" y2="14.5"/></symbol>
-<symbol id="icon-sparkles" viewBox="0 0 24 24"><polygon points="11 3 13 9.5 19.5 11.5 13 13.5 11 20 9 13.5 2.5 11.5 9 9.5 11 3"/><line x1="19" y1="2.5" x2="19" y2="6.5"/><line x1="17" y1="4.5" x2="21" y2="4.5"/></symbol>
-<symbol id="icon-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
-<symbol id="icon-tag" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
-<symbol id="icon-folder" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></symbol>
-<symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
-<symbol id="icon-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
-<symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
-<symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
 <symbol id="icon-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+<symbol id="icon-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="1"/><polyline points="2 6 12 13 22 6"/></symbol>
+<symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+<symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="icon-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><line x1="12" y1="4.5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/><line x1="9" y1="13.5" x2="9" y2="14.5"/><line x1="15" y1="13.5" x2="15" y2="14.5"/></symbol>
 </defs>
 </svg>
 
-<div class="scroll-progress" aria-hidden="true"><span></span></div>
-
-<!-- ============ HEADER ============ -->
+<!-- ============ CABECERA ============ -->
 <header class="site-header" id="site-header">
 <div class="container site-header__inner">
 <a href="#inicio" class="logo" aria-label="Raúl Gil Gonzalez — Inicio">
-<span class="logo__mark">RG</span>
+<span class="logo__mark" aria-hidden="true">RG</span>
 <span class="logo__text">Raúl Gil</span>
 </a>
 
 <nav class="nav" aria-label="Navegación principal">
 <ul class="nav__list">
-<li><a href="#inicio">Inicio</a></li>
 <li><a href="#sobre-mi">Sobre mí</a></li>
 <li><a href="#servicios">Servicios</a></li>
 <li><a href="#agentes">Agentes IA</a></li>
 <li><a href="#proyectos">Proyectos</a></li>
+<li><a href="#proceso">Proceso</a></li>
 <li><a href="#precios">Precios</a></li>
 <li><a href="#faq">FAQ</a></li>
-<li><a href="#contacto">Contacto</a></li>
 </ul>
 </nav>
 
 <div class="site-header__actions">
+<p class="clock" data-clock hidden>Cáceres <span class="num" data-clock-time>--:--</span></p>
 <a href="#contacto" class="btn btn--primary btn--sm nav-cta">Contactar</a>
 <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
 <svg class="icon" aria-hidden="true"><use href="#icon-menu"/></svg>
@@ -154,100 +136,120 @@
 <!-- Menú móvil — fuera del header: dentro de un elemento position:sticky, el position:fixed de este panel se rompe en Chromium -->
 <div class="mobile-menu" id="mobile-menu" data-state="closed">
 <ul class="mobile-menu__list">
-<li><a href="#inicio">Inicio</a></li>
-<li><a href="#sobre-mi">Sobre mí</a></li>
-<li><a href="#servicios">Servicios</a></li>
-<li><a href="#agentes">Agentes IA</a></li>
-<li><a href="#proyectos">Proyectos</a></li>
-<li><a href="#precios">Precios</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a href="#contacto">Contacto</a></li>
+<li><a href="#sobre-mi" data-n="01">Sobre mí</a></li>
+<li><a href="#servicios" data-n="02">Servicios</a></li>
+<li><a href="#agentes" data-n="03">Agentes IA</a></li>
+<li><a href="#proyectos" data-n="04">Proyectos</a></li>
+<li><a href="#proceso" data-n="05">Proceso</a></li>
+<li><a href="#precios" data-n="06">Precios</a></li>
+<li><a href="#faq" data-n="07">FAQ</a></li>
+<li><a href="#contacto" data-n="08">Contacto</a></li>
 </ul>
-<a href="#contacto" class="btn btn--primary mobile-menu__cta">Cuéntame tu proyecto</a>
+<div class="mobile-menu__foot">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, tengo un proyecto en mente y me gustaría contarte más." class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+<a href="#contacto" class="btn btn--quiet btn--block">Ver todas las formas de contacto</a>
+</div>
 </div>
 
 <main id="main">
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="inicio">
-<div class="hero__bg" aria-hidden="true">
-<span class="hero__grid" data-parallax="0.22"></span>
-<span class="hero__orb hero__orb--1" data-parallax="0.4"></span>
-<span class="hero__orb hero__orb--2" data-parallax="0.12"></span>
-</div>
-
 <div class="container hero__inner">
-<div class="hero__content" data-reveal>
-<p class="eyebrow">Raúl Gil Gonzalez · Cáceres</p>
-<h1 class="hero__title">Agentes de IA para empresas</h1>
-<p class="hero__tagline">Convierto las visitas de tu web en contactos cualificados.</p>
-<p class="hero__sub">El agente conversa con quien entra, recoge lo que necesita, lo clasifica por urgencia y te lo envía con un resumen: abres el correo por la mañana y sabes a quién llamar primero. Pensado para empresas que viven de contactos entrantes: asesorías, inmobiliarias, reformas, instalaciones y formación. Si además necesitas la web, también la hago.</p>
+<div class="hero__content">
+<p class="marker">Raúl Gil Gonzalez · Cáceres · Agentes de IA y desarrollo web</p>
+<h1 class="display hero__title">Agentes de IA que convierten visitas en <em>contactos cualificados</em></h1>
+<p class="lead hero__lead">Conversan con quien entra en tu web, recogen lo que necesita y te lo envían clasificado por urgencia. Abres el correo por la mañana y sabes a quién llamar primero.</p>
+<p class="hero__detail">Pensado para empresas que viven de contactos entrantes: asesorías, inmobiliarias, reformas, instalaciones y formación. Si además te falta la web donde ponerlo, también la desarrollo.</p>
 <div class="hero__actions">
-<a href="#contacto" class="btn btn--primary btn--lg">Cuéntame tu proyecto<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-<a href="#agentes" class="btn btn--ghost btn--lg">Ver cómo funciona</a>
+<a href="#contacto" class="btn btn--primary btn--lg">Cuéntame tu proyecto</a>
+<a href="#agentes" class="btn btn--outline btn--lg">Ver cómo funciona</a>
 </div>
-<p class="hero__trust">
-<span class="status-dot" aria-hidden="true"></span>
-Disponible para nuevos proyectos · respuesta rápida por WhatsApp
-</p>
+<p class="hero__avail"><span class="dot" aria-hidden="true"></span>Disponible para nuevos proyectos · respuesta rápida por WhatsApp</p>
 </div>
 
-<div class="hero__visual" data-reveal data-reveal-delay="1">
-<div class="depth-stage" data-depth-stage>
-<div class="code-window" data-parallax="-0.04" data-depth="1" role="img" aria-label="Editor de código con un objeto JavaScript que describe a Raúl: estudia Ingeniería Informática en Cáceres y crea agentes de IA y webs">
-<div class="code-window__bar">
-<span class="code-window__dot code-window__dot--r"></span>
-<span class="code-window__dot code-window__dot--a"></span>
-<span class="code-window__dot code-window__dot--g"></span>
-<span class="code-window__tab">sobre-mi.js</span>
+<!-- El parte: la salida real del producto. Datos de ejemplo, no de clientes. -->
+<div class="hero__visual">
+<figure class="report">
+<figcaption class="report__head">
+<span class="report__title">Contactos de anoche</span>
+<span class="report__stamp">Ejemplo · 07:40</span>
+</figcaption>
+<div class="report__rows">
+<div class="lead-row lead-row--high">
+<span class="lead-row__pri" aria-hidden="true"></span>
+<div>
+<p class="lead-row__who">Construcciones Vega SL<span class="lead-row__sector">Reformas</span></p>
+<p class="lead-row__ask">Reforma integral de oficina de 180 m². Quieren empezar en enero.</p>
 </div>
-<pre class="code-window__body"><code><span class="tok-kw">const</span> <span class="tok-var">desarrollador</span> = {
-  <span class="tok-key">nombre</span>: <span class="tok-str">"Raúl Gil Gonzalez"</span>,
-  <span class="tok-key">estudia</span>: <span class="tok-str">"Ingeniería Informática"</span>,
-  <span class="tok-key">ciudad</span>: <span class="tok-str">"Cáceres"</span>,
-  <span class="tok-key">crea</span>: [<span class="tok-str">"agentes de IA"</span>, <span class="tok-str">"webs"</span>],
-  <span class="tok-key">disponible</span>: <span class="tok-bool">true</span>
-};</code></pre>
-</div>
-
-<div class="chat-card" data-parallax="-0.14" data-depth="2.6" role="img" aria-label="Ejemplo de conversación: una empresa pide presupuesto para reformar una oficina y el asistente de IA le pregunta los metros y el alcance de la obra">
-<div class="chat-card__head">
-<span class="chat-card__avatar"><svg class="icon" aria-hidden="true"><use href="#icon-bot"/></svg></span>
-<span class="chat-card__who"><strong>Asistente virtual</strong><small><span class="status-dot status-dot--sm" aria-hidden="true"></span>En línea</small></span>
-</div>
-<p class="chat-card__msg chat-card__msg--user">Necesito presupuesto para reformar una oficina</p>
-<p class="chat-card__msg chat-card__msg--agent">¿De cuántos metros, y es obra completa o solo acabados?</p>
-</div>
-
-<div class="floating-badge" data-parallax="-0.24" data-depth="3.6">
-<svg class="icon" aria-hidden="true"><use href="#icon-award"/></svg>
-Ingeniería Informática
+<div class="lead-row__meta">
+<span class="lead-row__tag">Urgente</span>
+<span class="lead-row__time">23:41</span>
 </div>
 </div>
+<div class="lead-row lead-row--high">
+<span class="lead-row__pri" aria-hidden="true"></span>
+<div>
+<p class="lead-row__who">Asesoría Mondragón<span class="lead-row__sector">Asesoría fiscal</span></p>
+<p class="lead-row__ask">Contabilidad de una SL con unas 40 facturas al mes, desde enero.</p>
+</div>
+<div class="lead-row__meta">
+<span class="lead-row__tag">Urgente</span>
+<span class="lead-row__time">21:08</span>
+</div>
+</div>
+<div class="lead-row lead-row--mid">
+<span class="lead-row__pri" aria-hidden="true"></span>
+<div>
+<p class="lead-row__who">Marta Ibáñez<span class="lead-row__sector">Formación</span></p>
+<p class="lead-row__ask">Pide el temario y el calendario del curso de octubre.</p>
+</div>
+<div class="lead-row__meta">
+<span class="lead-row__tag">Templado</span>
+<span class="lead-row__time">19:52</span>
+</div>
+</div>
+<div class="lead-row">
+<span class="lead-row__pri" aria-hidden="true"></span>
+<div>
+<p class="lead-row__who">Anónimo<span class="lead-row__sector">Sin determinar</span></p>
+<p class="lead-row__ask">Consulta el horario de atención. No deja datos de contacto.</p>
+</div>
+<div class="lead-row__meta">
+<span class="lead-row__tag">Frío</span>
+<span class="lead-row__time">18:16</span>
+</div>
+</div>
+</div>
+<div class="report__foot">
+<span class="report__legend">Prioridad: urgente · templado · frío</span>
+<p class="note">Ejemplo ilustrativo del informe que envía el agente. No son datos reales de clientes.</p>
+</div>
+</figure>
 </div>
 </div>
 </section>
 
-<!-- ============ CONFIANZA ============ -->
-<section class="trust" aria-labelledby="trust-title">
+<!-- ============ DATOS ============ -->
+<section class="section section--strip" aria-labelledby="datos-title">
 <div class="container">
-<h2 class="visually-hidden" id="trust-title">Por qué trabajar conmigo</h2>
-<ul class="trust__list" data-reveal>
-<li class="trust__item">
-<span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-user"/></svg></span>
-<span><strong>Trato directo</strong>Hablas siempre conmigo, sin intermediarios.</span>
+<h2 class="visually-hidden" id="datos-title">Datos básicos</h2>
+<ul class="facts">
+<li class="fact">
+<span class="fact__k">Dónde</span>
+<span class="fact__v">Cáceres, Extremadura. Trabajo en remoto para toda España.</span>
 </li>
-<li class="trust__item">
-<span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-tag"/></svg></span>
-<span><strong>Precio claro</strong>Acordamos el precio antes de empezar.</span>
+<li class="fact">
+<span class="fact__k">Formación</span>
+<span class="fact__v">Ingeniería Informática, Escuela Politécnica de Cáceres.</span>
 </li>
-<li class="trust__item">
-<span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-folder"/></svg></span>
-<span><strong>El proyecto es tuyo</strong>Te entrego todos los archivos de tu web.</span>
+<li class="fact">
+<span class="fact__k">Proyecto</span>
+<span class="fact__v"><a href="#proyectos">Nevila</a>, tienda online desarrollada y entregada.</span>
 </li>
-<li class="trust__item">
-<span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-award"/></svg></span>
-<span><strong>Proyecto real</strong><a href="#proyectos">Nevila</a>, tienda online publicada.</span>
+<li class="fact">
+<span class="fact__k">Cómo trabajo</span>
+<span class="fact__v">Hablas conmigo, sin intermediarios. El precio se cierra antes de empezar.</span>
 </li>
 </ul>
 </div>
@@ -256,129 +258,109 @@ Ingeniería Informática
 <!-- ============ SOBRE MÍ ============ -->
 <section class="section" id="sobre-mi">
 <div class="container">
-<div class="about__grid">
-<div class="about__text" data-reveal>
-<p class="eyebrow">Sobre mí</p>
-<h2>Detrás del código</h2>
-<p>Soy Raúl, estudiante de Ingeniería Informática en la Escuela Politécnica de Cáceres. Empecé haciendo páginas web por curiosidad —quería entender cómo funcionaban por dentro— y hoy las diseño y desarrollo para negocios reales.</p>
-<p>Además de webs, trabajo con inteligencia artificial: creo agentes que atienden a los clientes, captan contactos y gestionan reservas, para que un negocio no pierda oportunidades por no poder contestar a tiempo.</p>
-<p>No me conformo con que algo se vea bien: me importa que funcione, que se entienda a la primera y que ayude a conseguir clientes. Sigo aprendiendo cada día —así es este oficio—, pero ya tengo proyectos reales publicados y funcionando.</p>
+<div class="section__head">
+<p class="marker">Sobre mí</p>
+<div class="section__head-body">
+<h2>Quién hay detrás</h2>
+</div>
 </div>
 
-<div class="about__side" data-reveal data-reveal-delay="1">
+<div class="about">
+<div class="about__text">
+<p>Soy Raúl Gil Gonzalez, estudiante de Ingeniería Informática en la Escuela Politécnica de Cáceres. Empecé haciendo páginas web por curiosidad —quería entender cómo funcionaban por dentro— y acabé desarrollándolas para negocios reales.</p>
+<p>Hoy mi trabajo principal son los agentes de IA: asistentes que atienden a quien escribe, recogen la información que hace falta y la dejan ordenada para que alguien decida. Lo que me interesa de esto no es la tecnología en sí, sino el problema que resuelve: una empresa pequeña pierde oportunidades simplemente porque nadie puede contestar a las once de la noche.</p>
+<p>No me conformo con que algo se vea bien. Me importa que funcione, que se entienda a la primera y que se pueda mantener. Sigo aprendiendo cada día —así es este oficio—, y lo que presento aquí es lo que ya sé hacer, no lo que me gustaría saber hacer.</p>
+</div>
+
 <figure class="about__photo">
-<div class="about__photo-frame">
-<img class="about__photo-img" src="assets/raul-perfil.jpg" width="900" height="1200" alt="Retrato de Raúl Gil Gonzalez" loading="lazy" decoding="async" data-parallax="0.05" data-parallax-max="22">
-</div>
+<img src="assets/raul-perfil.jpg" width="900" height="1200" alt="Retrato de Raúl Gil Gonzalez" loading="lazy" decoding="async">
+<figcaption>Cáceres, Extremadura</figcaption>
 </figure>
-<div class="chip-row">
-<span class="chip"><svg class="icon" aria-hidden="true"><use href="#icon-award"/></svg>Ingeniería Informática</span>
-<span class="chip"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>Cáceres, España</span>
-</div>
-</div>
 </div>
 </div>
 </section>
 
-<!-- ============ BANDA (se mueve con el scroll, a distinta velocidad por fila) ============ -->
-<div class="velocity" data-velocity aria-hidden="true">
-<div class="velocity__row" data-velocity-row="-1">
-<span>Páginas web</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Agentes de IA</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Atención al cliente</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Captación de clientes</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Reservas</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Automatización</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Páginas web</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Agentes de IA</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Atención al cliente</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Captación de clientes</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Reservas</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Automatización</span>
-</div>
-<div class="velocity__row velocity__row--outline" data-velocity-row="0.7">
-<span>Diseño a medida</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Respuestas 24 h</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Código limpio</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Trato directo</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Precios claros</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Diseño a medida</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Respuestas 24 h</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Código limpio</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Trato directo</span><svg class="icon"><use href="#icon-sparkles"/></svg><span>Precios claros</span>
-</div>
-</div>
-
-<!-- ============ SERVICIOS / QUÉ HAGO ============ -->
-<section class="section section--alt" id="servicios">
+<!-- ============ SERVICIOS ============ -->
+<section class="section section--sunken" id="servicios">
 <div class="container">
-<div class="section__header" data-reveal>
-<p class="eyebrow">Servicios</p>
+<div class="section__head">
+<p class="marker">Servicios</p>
+<div class="section__head-body">
 <h2>Qué hago</h2>
-<p class="section__intro">Lo principal son los agentes de IA: convierten las visitas de tu web en contactos cualificados, a cualquier hora. Y si te falta la web donde ponerlo, la hago también.</p>
+<p class="lead">Dos servicios, con un orden claro. Los agentes de IA son el trabajo principal; la web la desarrollo cuando hace falta un sitio donde ponerlo o cuando el que hay no sirve.</p>
+</div>
 </div>
 
-<div class="pillars">
-<article class="pillar pillar--ai" data-reveal data-spotlight>
-<div class="pillar__head">
-<span class="pillar__icon"><svg class="icon" aria-hidden="true"><use href="#icon-bot"/></svg></span>
-<span class="pillar__tag">Inteligencia artificial</span>
+<div class="services">
+<article class="service service--primary">
+<div class="service__top">
+<span class="service__n">Principal</span>
+<h3 class="service__title">Agentes de IA</h3>
 </div>
-<h3>Agentes de IA y automatización</h3>
-<p>Conversan con quien entra en tu web, recogen lo que necesita y te lo envían clasificado por urgencia. A cualquier hora, también cuando tú no puedes contestar.</p>
-<ul class="pillar__list">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-funnel"/></svg>Captación y clasificación de contactos</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg>Atención al cliente, a cualquier hora</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>Gestión de reservas y citas</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"/></svg>Agentes a medida para tu negocio</li>
+<div class="service__aside">
+<p class="service__price"><span class="service__price-k">Desde</span><span class="num">690 €</span><span class="service__price-m">+ 79 €/mes</span></p>
+</div>
+<div class="service__body">
+<p class="service__lead">Un asistente que conversa por escrito con quien entra en tu web, usando solo la información real de tu negocio: resuelve dudas, recoge lo que necesita y te avisa con un resumen clasificado por urgencia.</p>
+<ul class="service__list">
+<li>Captación y clasificación de contactos entrantes</li>
+<li>Atención al cliente a cualquier hora</li>
+<li>Gestión de reservas y citas por conversación</li>
+<li>Agentes a medida cuando el caso no encaja en los anteriores</li>
 </ul>
-<div class="pillar__foot">
-<span class="pillar__price">Desde <strong>690 €</strong> + 79 €/mes</span>
-<a href="#agentes" class="link-arrow">Conocer los agentes<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+<div class="service__foot">
+<a href="#agentes" class="link-u">Cómo funciona</a>
+<a href="#precios" class="link-u" data-tab-target="precios-agentes">Precios de agentes</a>
+</div>
 </div>
 </article>
 
-<article class="pillar" data-reveal data-reveal-delay="1" data-spotlight>
-<div class="pillar__head">
-<span class="pillar__icon"><svg class="icon" aria-hidden="true"><use href="#icon-globe"/></svg></span>
-<span class="pillar__tag">Complemento</span>
+<article class="service">
+<div class="service__top">
+<span class="service__n">Complemento</span>
+<h3 class="service__title">Páginas web</h3>
 </div>
-<h3>Páginas web profesionales</h3>
-<p>Si no tienes web, o la que tienes no te sirve, la hago. Rápida, clara y bien en el móvil, que es por donde entra casi todo el mundo.</p>
-<ul class="pillar__list">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-layers"/></svg>Diseño a medida, adaptado a tu negocio</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-code"/></svg>Desarrollo con código limpio y mantenible</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-devices"/></svg>Perfecta en móvil, tablet y ordenador</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-zap"/></svg>Velocidad y SEO básico desde el primer día</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-upload"/></svg>Publicación en Internet</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-shield"/></svg>Mantenimiento opcional por 30 €/mes</li>
+<div class="service__aside">
+<p class="service__price"><span class="service__price-k">Desde</span><span class="num">99 €</span><span class="service__price-m">pago único</span></p>
+</div>
+<div class="service__body">
+<p class="service__lead">Webs rápidas, claras y bien resueltas en el móvil, que es por donde entra casi todo el mundo. Diseño y desarrollo a medida, sin plantillas de catálogo.</p>
+<ul class="service__list">
+<li>Diseño a medida, adaptado a tu negocio</li>
+<li>Código limpio y mantenible, sin dependencias innecesarias</li>
+<li>Correcta en móvil, tablet y ordenador</li>
+<li>Velocidad y SEO básico desde el primer día</li>
+<li>Publicación en Internet y entrega de los archivos</li>
+<li>Mantenimiento opcional por 30 €/mes</li>
 </ul>
-<div class="pillar__foot">
-<a href="#precios" class="link-arrow" data-tab-target="precios-webs">Ver precios de webs<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+<div class="service__foot">
+<a href="#precios" class="link-u" data-tab-target="precios-webs">Precios de webs</a>
+<a href="#precios" class="link-u" data-tab-target="precios-packs">Packs web + agente</a>
+</div>
 </div>
 </article>
 </div>
 </div>
 </section>
 
-<!-- ============ AGENTES DE IA ============ -->
-<section class="section section--agents" id="agentes">
-<div class="agents__bg" aria-hidden="true">
-<span class="agents__orb agents__orb--1" data-parallax="0.3"></span>
-<span class="agents__orb agents__orb--2" data-parallax="0.12"></span>
-</div>
+<!-- ============ AGENTES ============ -->
+<section class="section" id="agentes">
 <div class="container">
-<div class="agents__intro">
-<div class="agents__text" data-reveal>
-<p class="eyebrow eyebrow--ai">Agentes de IA</p>
-<h2>Cada visita de tu web puede ser un contacto, en vez de alguien que se va</h2>
-<p class="section__intro">Un agente de IA conversa por escrito con quien entra, usando solo la información real de tu negocio: resuelve dudas, recoge lo que necesita y te avisa con un resumen. Lo configuro a medida, lo probamos juntos antes de ponerlo en marcha y me encargo de que siga funcionando.</p>
-<ol class="agents__steps">
-<li>
-<span class="agents__step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg></span>
-<span><strong>Aprende tu negocio</strong>Lo preparo con tus servicios, horarios, precios y preguntas habituales.</span>
-</li>
-<li>
-<span class="agents__step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg></span>
-<span><strong>Atiende al momento</strong>Responde en tu web en segundos, a cualquier hora del día.</span>
-</li>
-<li>
-<span class="agents__step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg></span>
-<span><strong>Te dice a quién llamar primero</strong>Clasifica cada contacto por interés y urgencia, y te lo envía con un resumen de la conversación.</span>
-</li>
-</ol>
-<div class="agents__try" data-asistente-cta hidden>
-<p><strong>Pruébalo ahora:</strong> el asistente de esta web es uno de estos agentes, con mi información cargada dentro. Es el mismo producto que instalo.</p>
-<button type="button" class="btn btn--primary btn--sm" data-open-assistant>Hablar con el asistente<svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg></button>
+<div class="section__head">
+<p class="marker">Agentes de IA</p>
+<div class="section__head-body">
+<h2>De una conversación a un contacto que puedes atender</h2>
+<p class="lead">El agente habla con quien entra. De esa conversación sale una ficha ordenada: quién es, qué pide, con qué urgencia. Eso es lo que te llega.</p>
 </div>
 </div>
 
-<div class="agents__demo" data-reveal data-reveal-delay="1">
-<div class="chat-demo" data-chat-demo data-parallax="-0.06" data-parallax-max="40">
+<div class="mech">
+<div>
+<span class="mech__step">Lo que pasa en tu web</span>
+<div class="chat-demo" data-chat-demo>
 <div class="chat-demo__head">
-<span class="chat-card__avatar"><svg class="icon" aria-hidden="true"><use href="#icon-bot"/></svg></span>
-<span class="chat-card__who"><strong>Asistente de tu negocio</strong><small><span class="status-dot status-dot--sm" aria-hidden="true"></span>En línea</small></span>
+<svg class="icon" aria-hidden="true"><use href="#icon-bot"/></svg>
+<span class="chat-demo__who"><strong>Asistente de tu negocio</strong><small>En línea</small></span>
 </div>
 <div class="chat-demo__body">
 <p class="chat-bubble chat-bubble--user">Hola, buscamos quien nos lleve la contabilidad de una SL pequeña.</p>
@@ -388,381 +370,614 @@ Ingeniería Informática
 <p class="chat-typing" hidden><span></span><span></span><span></span><span class="visually-hidden">El asistente está escribiendo</span></p>
 </div>
 </div>
-<p class="chat-demo__caption">Ejemplo de conversación con un agente de captación de clientes</p>
-</div>
 </div>
 
-<div class="agents-grid">
-<article class="agent-card" data-reveal data-spotlight data-tilt>
-<span class="agent-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-funnel"/></svg></span>
-<h3>Agente de captación y clasificación de clientes</h3>
-<p class="agent-card__lead">El principal</p>
-<p>Conversa con quien visita tu web, recoge sus datos y lo que necesita, y clasifica cada contacto para que sepas a quién atender primero.</p>
-<ul class="agent-card__list">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Recoge nombre, contacto y necesidad</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Clasifica por interés y urgencia</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Te envía cada contacto con un resumen</li>
-</ul>
-<p class="agent-card__ideal"><strong>Ideal para:</strong> servicios profesionales, inmobiliarias, reformas, formación.</p>
-<a class="link-arrow" href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de captación de clientes." target="_blank" rel="noopener noreferrer">Quiero este agente<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-</article>
-
-<article class="agent-card" data-reveal data-reveal-delay="1" data-spotlight data-tilt>
-<span class="agent-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg></span>
-<h3>Agente de reservas</h3>
-<p>Gestiona reservas y citas por conversación: pregunta lo necesario, comprueba la disponibilidad y confirma, sin llamadas ni esperas.</p>
-<ul class="agent-card__list">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Recoge día, hora y datos de la reserva</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Comprueba la disponibilidad</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Confirma y te avisa de cada reserva</li>
-</ul>
-<p class="agent-card__ideal"><strong>Ideal para:</strong> restaurantes, peluquerías, clínicas, centros deportivos.</p>
-<a class="link-arrow" href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de reservas." target="_blank" rel="noopener noreferrer">Quiero este agente<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-</article>
-
-<article class="agent-card" data-reveal data-reveal-delay="2" data-spotlight data-tilt>
-<span class="agent-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg></span>
-<h3>Agente de atención al cliente</h3>
-<p>Resuelve las preguntas de tus clientes con la información de tu negocio: horarios, servicios, precios, cómo llegar…</p>
-<ul class="agent-card__list">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Respuestas al momento, a cualquier hora</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Con el tono y la información de tu negocio</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Te pasa la conversación cuando hace falta</li>
-</ul>
-<p class="agent-card__ideal"><strong>Ideal para:</strong> tiendas, clínicas, academias, restaurantes.</p>
-<a class="link-arrow" href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de atención al cliente." target="_blank" rel="noopener noreferrer">Quiero este agente<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
-</article>
-
-<article class="agent-card agent-card--custom" data-reveal data-spotlight>
-<div class="agent-card--custom__text">
-<span class="agent-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-sparkles"/></svg></span>
 <div>
-<h3>Agente a medida</h3>
-<p>¿Tu negocio necesita algo distinto? Diseño un agente específico para tu caso. El precio se acuerda contigo según lo que tenga que hacer.</p>
+<span class="mech__step">Lo que recibes tú</span>
+<div class="record">
+<div class="record__head">
+<strong>Contacto registrado</strong>
+<span class="record__pri">Urgente</span>
+</div>
+<dl class="record__dl">
+<div><dt>Empresa</dt><dd>Asesoría Mondragón</dd></div>
+<div><dt>Sector</dt><dd>Asesoría fiscal</dd></div>
+<div><dt>Necesidad</dt><dd>Contabilidad de una SL, ~40 facturas al mes</dd></div>
+<div><dt>Plazo</dt><dd>Desde enero</dd></div>
+<div><dt>Contacto</dt><dd>Teléfono facilitado en la conversación</dd></div>
+<div><dt>Por qué urgente</dt><dd>Necesidad concreta, plazo definido y datos de contacto completos</dd></div>
+</dl>
 </div>
 </div>
-<a class="btn btn--primary" href="https://wa.me/34658953935" data-wa="Hola Raúl, me gustaría pedir presupuesto para un agente de IA a medida." target="_blank" rel="noopener noreferrer">Cuéntame tu idea<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></a>
+</div>
+
+<p class="mech__caption">Ejemplo de una conversación y de la ficha que genera. Los datos son inventados para la demostración.</p>
+
+<div class="try" data-asistente-cta hidden>
+<p><strong>Pruébalo aquí mismo.</strong> El asistente de esta web es uno de estos agentes, cargado con mi propia información. Es el mismo producto que instalo.</p>
+<button type="button" class="btn btn--primary" data-open-assistant>Hablar con el asistente</button>
+</div>
+
+<h3 class="visually-hidden">Tipos de agente</h3>
+<div class="agents-list">
+<article class="agent-item">
+<div class="agent-item__h">
+<h3>Captación y clasificación</h3>
+<span class="agent-item__flag">El principal</span>
+<p class="agent-item__for">Servicios profesionales, inmobiliarias, reformas, formación</p>
+</div>
+<div>
+<p>Conversa con quien visita tu web, recoge sus datos y lo que necesita, y clasifica cada contacto por interés y urgencia para que sepas a quién atender primero.</p>
+</div>
+<p class="agent-item__price"><span class="num">1.200 €</span><br>+ 129 €/mes</p>
+</article>
+
+<article class="agent-item">
+<div class="agent-item__h">
+<h3>Reservas y citas</h3>
+<p class="agent-item__for">Restaurantes, peluquerías, clínicas, centros deportivos</p>
+</div>
+<div>
+<p>Gestiona reservas por conversación: pregunta lo necesario, comprueba la disponibilidad, confirma y te avisa. Sin llamadas ni esperas.</p>
+</div>
+<p class="agent-item__price"><span class="num">990 €</span><br>+ 99 €/mes</p>
+</article>
+
+<article class="agent-item">
+<div class="agent-item__h">
+<h3>Atención al cliente</h3>
+<p class="agent-item__for">Tiendas, clínicas, academias, restaurantes</p>
+</div>
+<div>
+<p>Resuelve las preguntas de siempre con la información de tu negocio —horarios, servicios, precios, cómo llegar— y te pasa la conversación cuando hace falta.</p>
+</div>
+<p class="agent-item__price"><span class="num">690 €</span><br>+ 79 €/mes</p>
+</article>
+
+<article class="agent-item">
+<div class="agent-item__h">
+<h3>A medida</h3>
+<p class="agent-item__for">Cuando el caso no encaja en los tres anteriores</p>
+</div>
+<div>
+<p>Analizamos juntos qué tiene que hacer el agente y con qué herramientas se tiene que conectar. El precio se acuerda antes de empezar.</p>
+</div>
+<p class="agent-item__price">Precio<br>acordado</p>
 </article>
 </div>
 
-<p class="agents__note" data-reveal>Captación de clientes <strong>1.200 €</strong> + 129 €/mes · Reservas <strong>990 €</strong> + 99 €/mes · Atención al cliente <strong>690 €</strong> + 79 €/mes. Pago único más mantenimiento; la conexión con tu agenda o sistema de reservas se valora en cada caso. <a href="#precios" data-tab-target="precios-agentes">Ver precios y packs</a></p>
+<p class="sheet-note">Todos los agentes se entregan configurados con la información de tu negocio y los probamos juntos antes de ponerlos en marcha. El mantenimiento mensual cubre que siga funcionando, actualizar su información cuando cambie algo y pequeños ajustes. La conexión con tu agenda o tu sistema de reservas se valora en cada caso. <a href="#precios" class="link-u" data-tab-target="precios-agentes">Ver el detalle de precios</a></p>
 </div>
 </section>
 
 <!-- ============ PROYECTOS ============ -->
-<section class="section" id="proyectos">
+<section class="section section--sunken" id="proyectos">
 <div class="container">
-<div class="section__header" data-reveal>
-<p class="eyebrow">Proyectos</p>
-<h2>Un proyecto real, bien hecho</h2>
-<p class="section__intro">Prefiero enseñarte un proyecto real y completo antes que una lista de ejemplos inventados. Este es uno de los que he tenido la suerte de desarrollar.</p>
+<div class="section__head">
+<p class="marker">Proyectos</p>
+<div class="section__head-body">
+<h2>Un proyecto real, entero</h2>
+<p class="lead">Prefiero enseñar un proyecto publicado y funcionando antes que una lista de ejemplos de relleno. Iré añadiendo los siguientes a medida que los termine.</p>
+</div>
 </div>
 
-<div class="projects-grid">
-<article class="project-card project-card--featured" data-reveal>
-<div class="project-card__visual">
-<div class="browser-mock" data-parallax="-0.05" data-parallax-max="18">
-<div class="browser-mock__bar" aria-hidden="true">
-<span class="browser-mock__dot"></span><span class="browser-mock__dot"></span><span class="browser-mock__dot"></span>
-<span class="browser-mock__url">nevila.es</span>
+<article class="case">
+<div class="case__visual">
+<div class="case__chrome" aria-hidden="true">
+<span class="case__url">nevila.es</span>
 </div>
-<div class="browser-mock__body browser-mock__body--screenshot">
 <img src="assets/proyecto-nevila.png" width="1894" height="899" alt="Captura de la página de inicio de Nevila, tienda online de productos de bienestar y cuidado personal" loading="lazy" decoding="async">
 </div>
-</div>
-</div>
-<div class="project-card__content">
-<p class="project-card__label">Proyecto destacado</p>
+
+<div class="case__body">
+<div class="case__h">
 <h3>Nevila</h3>
-<div class="project-card__tags">
+<span class="case__kind">Tienda online</span>
+</div>
+<p class="case__intro">Tienda online de productos de bienestar y cuidado personal: depilación, masaje corporal y cuidado facial.</p>
+
+<dl class="case__dl">
+<div>
+<dt>El encargo</dt>
+<dd>Una tienda donde el cliente encuentre lo que busca sin dar vueltas, con un catálogo que crece por categorías.</dd>
+</div>
+<div>
+<dt>Lo que hice</dt>
+<dd>Estructura del catálogo por categorías, packs de productos combinados y una experiencia de compra pensada para el móvil, que es por donde llega la mayoría del tráfico.</dd>
+</div>
+<div>
+<dt>Entregado</dt>
+<dd>La tienda completa, lista para publicar y para seguir creciendo en catálogo.</dd>
+</div>
+</dl>
+
+<div class="case__foot">
+<div class="tags">
 <span class="tag">Tienda online</span>
 <span class="tag">E-commerce</span>
-<span class="tag">Diseño responsive</span>
+<span class="tag">Responsive</span>
+<span class="tag">Catálogo</span>
 </div>
-<p>Nevila es una tienda online de productos de bienestar y cuidado personal —depilación, masaje corporal y cuidado facial—, con catálogo por categorías, packs combinados y una experiencia de compra pensada para que el cliente encuentre lo que busca sin complicarse.</p>
-<a href="https://nevila.es" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Visitar proyecto<svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg></a>
+<!-- Enlace a la tienda: retirado porque el dominio nevila.es no resuelve
+     (Cloudflare devuelve «DNS resolution error» y el certificado TLS falla).
+     Cuando el dominio vuelva a funcionar, descomenta este bloque:
+<p class="case__visit"><a href="https://nevila.es" class="btn btn--outline" target="_blank" rel="noopener noreferrer">Visitar la tienda<svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg></a></p>
+-->
+</div>
 </div>
 </article>
 
-<article class="project-card project-card--ghost" data-reveal data-reveal-delay="1">
-<div class="project-card__ghost">
-<span class="project-card__ghost-icon"><svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg></span>
-<div class="project-card__ghost-text">
-<h3>¿Tu web o tu agente, los siguientes?</h3>
-<p>Voy sumando proyectos a medida que los completo. Si quieres que el tuyo sea el próximo de esta lista, hablemos.</p>
+<div class="next-up">
+<div class="next-up__text">
+<h3>¿El siguiente es el tuyo?</h3>
+<p>Si quieres que tu web o tu agente sean el próximo proyecto de esta página, cuéntame qué necesitas.</p>
 </div>
-<a href="#contacto" class="btn btn--ghost">Hablar sobre mi proyecto</a>
-</div>
-</article>
+<a href="#contacto" class="btn btn--primary">Hablar de mi proyecto</a>
 </div>
 </div>
 </section>
 
-<!-- ============ PROCESO DE TRABAJO ============ -->
-<section class="section section--alt" id="proceso">
+<!-- ============ PROCESO ============ -->
+<section class="section" id="proceso">
 <div class="container">
-<div class="section__header" data-reveal>
-<p class="eyebrow">Cómo trabajo</p>
+<div class="section__head">
+<p class="marker">Cómo trabajo</p>
+<div class="section__head-body">
 <h2>De la idea a tenerlo funcionando</h2>
-<p class="section__intro">El mismo proceso para una web, un agente o las dos cosas: claro, por pasos y sin sorpresas.</p>
+<p class="lead">El mismo recorrido para una web, un agente o las dos cosas. En cada paso sabes qué se está haciendo y qué recibes al acabarlo.</p>
+</div>
 </div>
 
 <ol class="process">
-<li class="process__step" data-reveal>
-<span class="process__number">01</span>
+<li class="process__step">
 <h3>Hablamos</h3>
-<p>Me cuentas qué necesitas —una web, un agente o ambos— y qué quieres conseguir.</p>
+<p>Me cuentas qué necesitas y qué quieres conseguir. Si no está claro cuál de los dos servicios te encaja, lo decidimos aquí.</p>
+<p class="process__out">Recibes: una recomendación concreta, sin compromiso.</p>
 </li>
-<li class="process__step" data-reveal data-reveal-delay="1">
-<span class="process__number">02</span>
+<li class="process__step">
 <h3>Planificamos</h3>
-<p>Definimos estructura, contenido, funciones y precio antes de empezar.</p>
+<p>Definimos estructura, contenido, funciones y alcance. El precio se cierra en este punto, antes de que yo empiece a trabajar.</p>
+<p class="process__out">Recibes: el alcance y el precio por escrito.</p>
 </li>
-<li class="process__step" data-reveal data-reveal-delay="2">
-<span class="process__number">03</span>
+<li class="process__step">
 <h3>Lo construyo</h3>
-<p>Diseño y desarrollo tu web, o preparo tu agente con la información de tu negocio.</p>
+<p>Desarrollo la web, o preparo el agente con la información real de tu negocio: servicios, horarios, precios y preguntas habituales.</p>
+<p class="process__out">Recibes: avisos de avance, sin tener que preguntar.</p>
 </li>
-<li class="process__step" data-reveal data-reveal-delay="3">
-<span class="process__number">04</span>
+<li class="process__step">
 <h3>Lo probamos</h3>
-<p>Lo revisamos juntos y hago los ajustes necesarios antes de lanzarlo.</p>
+<p>Lo revisamos juntos. En el caso del agente, conversamos con él hasta que responde como tú quieres que responda.</p>
+<p class="process__out">Recibes: los ajustes acordados, incluidos en el precio.</p>
 </li>
-<li class="process__step" data-reveal data-reveal-delay="4">
-<span class="process__number">05</span>
+<li class="process__step">
 <h3>Lo ponemos en marcha</h3>
-<p>Se publica. Te entrego los archivos de tu web o me encargo del mantenimiento.</p>
+<p>Se publica. Si es una web, te entrego todos los archivos; si quieres, me encargo yo del mantenimiento.</p>
+<p class="process__out">Recibes: el proyecto en producción y los archivos, que son tuyos.</p>
 </li>
 </ol>
 </div>
 </section>
 
 <!-- ============ PRECIOS ============ -->
-<section class="section" id="precios">
+<section class="section section--sunken" id="precios">
 <div class="container">
-<div class="section__header section__header--center" data-reveal>
-<p class="eyebrow">Precios</p>
+<div class="section__head">
+<p class="marker">Precios</p>
+<div class="section__head-body">
 <h2>Precios claros, sin sorpresas</h2>
-<p class="section__intro">Agentes de IA, webs o las dos cosas juntas con descuento. Si tu caso no encaja exactamente en ninguna opción, hablamos y la adaptamos.</p>
+<p class="lead">Agentes de IA, webs o las dos cosas juntas con descuento. Cada opción indica para quién es, qué incluye y qué recibes al terminar. Si tu caso no encaja en ninguna, hablamos y la adaptamos.</p>
+</div>
 </div>
 
 <div class="tabs" data-tabs>
 <div class="tabs__list" role="tablist" aria-label="Tipo de servicio">
 <button type="button" class="tabs__tab" role="tab" id="tab-precios-agentes" aria-controls="precios-agentes" aria-selected="true">Agentes IA</button>
 <button type="button" class="tabs__tab" role="tab" id="tab-precios-webs" aria-controls="precios-webs" aria-selected="false" tabindex="-1">Webs</button>
-<button type="button" class="tabs__tab" role="tab" id="tab-precios-packs" aria-controls="precios-packs" aria-selected="false" tabindex="-1">Packs <span class="tabs__badge">Ahorra</span></button>
-<span class="tabs__indicator" aria-hidden="true"></span>
-</div>
-
-<!-- Webs -->
-<div class="tabs__panel" role="tabpanel" id="precios-webs" aria-labelledby="tab-precios-webs">
-<h3 class="tabs__panel-title">Webs</h3>
-<div class="pricing-grid">
-<article class="pricing-card" data-reveal data-spotlight data-tilt>
-<h4>Sencilla</h4>
-<p class="pricing-card__desc">Para tener presencia online, sin complicaciones.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">99 €</span></p>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Página web informativa</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Diseño responsive (móvil, tablet y ordenador)</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Secciones esenciales de tu negocio</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Botón de contacto directo</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Integración con WhatsApp</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Preparación y publicación de los archivos</li>
-</ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el plan Sencilla (99 €) para mi página web." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Elegir Sencilla</a>
-</article>
-
-<article class="pricing-card pricing-card--featured" data-reveal data-reveal-delay="1" data-spotlight data-tilt>
-<span class="pricing-card__badge">Recomendada</span>
-<h4>Medium</h4>
-<p class="pricing-card__desc">Diseño a medida con todo lo necesario para destacar.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">199 €</span></p>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Todo lo del plan Sencilla</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Diseño personalizado con varias secciones</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Animaciones y microinteracciones</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Galería de imágenes</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Enlaces a redes sociales (Instagram, etc.)</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Formulario o elementos de contacto</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>SEO básico y optimización de velocidad</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Código limpio y mantenible</li>
-</ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el plan Medium (199 €) para mi página web." class="btn btn--primary" target="_blank" rel="noopener noreferrer">Elegir Medium</a>
-</article>
-
-<article class="pricing-card" data-reveal data-reveal-delay="2" data-spotlight data-tilt>
-<h4>Premium</h4>
-<p class="pricing-card__desc">Máxima personalización para proyectos más completos.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">399 €</span></p>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Todo lo del plan Medium</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Diseño 100 % personalizado</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Animaciones más avanzadas</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Galerías o catálogos de productos/servicios</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>SEO más completo y optimización de rendimiento</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Integraciones externas cuando sean apropiadas*</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Revisiones y ajustes incluidos</li>
-</ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el plan Premium (399 €) para mi página web." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Elegir Premium</a>
-</article>
-</div>
-
-<p class="pricing-footnote">*Funcionalidades que requieran backend, bases de datos o pagos online pueden tener un coste adicional, que se presupuesta aparte.</p>
-
-<div class="maintenance-block" data-reveal>
-<div class="maintenance-block__header">
-<h4>Mantenimiento opcional de la web — 30 €/mes</h4>
-<p>Cuando termino tu web, tú decides: puedo entregarte todos los archivos para que la gestiones como prefieras, o encargarme yo de mantenerla al día.</p>
-</div>
-<div class="maintenance-block__options">
-<div class="maintenance-option">
-<h5>Opción A · Te entrego los archivos</h5>
-<p>Recibes todo lo necesario para alojar y gestionar tu web por tu cuenta, sin ataduras.</p>
-</div>
-<div class="maintenance-option">
-<h5>Opción B · Mantenimiento por 30 €/mes</h5>
-<p>Me encargo de actualizar contenido, cambiar textos e imágenes, revisar que todo funcione y hacer pequeños ajustes. Los cambios grandes o nuevas funcionalidades se presupuestan aparte.</p>
-</div>
-</div>
-</div>
+<button type="button" class="tabs__tab" role="tab" id="tab-precios-packs" aria-controls="precios-packs" aria-selected="false" tabindex="-1">Packs</button>
 </div>
 
 <!-- Agentes IA -->
 <div class="tabs__panel" role="tabpanel" id="precios-agentes" aria-labelledby="tab-precios-agentes">
 <h3 class="tabs__panel-title">Agentes de IA</h3>
-<div class="pricing-grid">
-<article class="pricing-card pricing-card--featured pricing-card--ai" data-reveal data-spotlight data-tilt>
-<span class="pricing-card__badge">El principal</span>
-<h4>Captación de clientes</h4>
-<p class="pricing-card__desc">Conversa con quien entra en tu web, lo cualifica y te dice a quién llamar primero.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">1.200 €</span><span class="pricing-card__monthly">+ 129 €/mes</span></p>
-<p class="pricing-card__price-note">Pago único + mantenimiento mensual</p>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Configurado con la información de tu negocio</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Recoge nombre, contacto y lo que necesita</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Clasifica cada contacto por interés y urgencia</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Te lo envía con un resumen de la conversación</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Lo probamos juntos antes de ponerlo en marcha</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Mantenimiento: que siga funcionando, actualizaciones y ajustes</li>
+<p class="tabs__intro">Pago único por la puesta en marcha más una cuota mensual de mantenimiento. El pago único cubre configurarlo con tu información, probarlo contigo y dejarlo funcionando.</p>
+
+<div class="plans">
+<article class="plan plan--best">
+<div class="plan__h">
+<div class="plan__name"><h4>Captación de clientes</h4><span class="plan__flag">El principal</span></div>
+<p class="plan__desc">Conversa con quien entra en tu web, lo cualifica y te dice a quién llamar primero.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">1.200 €</span>
+<span class="plan__monthly">+ 129 €/mes</span>
+<p class="plan__terms">Pago único + mantenimiento mensual</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Empresas cuyo trabajo entra por la web y que pierden contactos por no poder responder a tiempo: asesorías, inmobiliarias, reformas, instalaciones, formación.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Configurado con la información de tu negocio</li>
+<li>Recoge nombre, contacto y qué necesita</li>
+<li>Clasifica cada contacto por interés y urgencia</li>
+<li>Te lo envía con un resumen de la conversación</li>
+<li>Lo probamos juntos antes de ponerlo en marcha</li>
 </ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de captación de clientes (1.200 € + 129 €/mes)." class="btn btn--primary" target="_blank" rel="noopener noreferrer">Quiero este agente</a>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">El agente funcionando en tu web y un informe por cada contacto. El mantenimiento cubre que siga funcionando, actualizar su información y pequeños ajustes.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de captación de clientes (1.200 € + 129 €/mes)." class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Quiero este agente</a>
+</div>
 </article>
 
-<article class="pricing-card" data-reveal data-reveal-delay="1" data-spotlight data-tilt>
-<h4>Reservas</h4>
-<p class="pricing-card__desc">Gestiona reservas y citas por conversación, sin llamadas ni esperas.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">990 €</span><span class="pricing-card__monthly">+ 99 €/mes</span></p>
-<p class="pricing-card__price-note">Pago único + mantenimiento mensual</p>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Configurado con tus servicios y tus horarios</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Recoge día, hora y datos de la reserva</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Confirma y te avisa de cada una</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Lo probamos juntos antes de ponerlo en marcha</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Mantenimiento: que siga funcionando, actualizaciones y ajustes</li>
+<article class="plan">
+<div class="plan__h">
+<div class="plan__name"><h4>Reservas</h4></div>
+<p class="plan__desc">Gestiona reservas y citas por conversación, sin llamadas ni esperas.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">990 €</span>
+<span class="plan__monthly">+ 99 €/mes</span>
+<p class="plan__terms">Pago único + mantenimiento mensual</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Negocios que trabajan con cita o mesa y gastan tiempo al teléfono: restaurantes, peluquerías, clínicas, centros deportivos.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Configurado con tus servicios y tus horarios</li>
+<li>Recoge día, hora y datos de la reserva</li>
+<li>Comprueba la disponibilidad</li>
+<li>Confirma y te avisa de cada reserva</li>
+<li>Lo probamos juntos antes de ponerlo en marcha</li>
 </ul>
-<p class="pricing-card__price-note">La conexión con tu agenda o tu sistema de reservas se valora aparte.</p>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de reservas (990 € + 99 €/mes)." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Quiero este agente</a>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">El agente tomando reservas y un aviso por cada una. La conexión con tu agenda o tu sistema de reservas se valora aparte.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de reservas (990 € + 99 €/mes)." class="btn btn--outline btn--block" target="_blank" rel="noopener noreferrer">Quiero este agente</a>
+</div>
 </article>
 
-<article class="pricing-card" data-reveal data-reveal-delay="2" data-spotlight data-tilt>
-<h4>Atención al cliente</h4>
-<p class="pricing-card__desc">Responde las preguntas de siempre a cualquier hora, con el tono de tu negocio.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">690 €</span><span class="pricing-card__monthly">+ 79 €/mes</span></p>
-<p class="pricing-card__price-note">Pago único + mantenimiento mensual</p>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Configurado con la información de tu negocio</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Horarios, servicios, precios y cómo llegar</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Te pasa la conversación cuando hace falta</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Lo probamos juntos antes de ponerlo en marcha</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Mantenimiento: que siga funcionando, actualizaciones y ajustes</li>
+<article class="plan">
+<div class="plan__h">
+<div class="plan__name"><h4>Atención al cliente</h4></div>
+<p class="plan__desc">Responde las preguntas de siempre a cualquier hora, con el tono de tu negocio.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">690 €</span>
+<span class="plan__monthly">+ 79 €/mes</span>
+<p class="plan__terms">Pago único + mantenimiento mensual</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Negocios que reciben siempre las mismas preguntas —horarios, precios, cómo llegar— y quieren dejar de contestarlas una por una.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Configurado con la información de tu negocio</li>
+<li>Horarios, servicios, precios y cómo llegar</li>
+<li>Responde con el tono que le marques</li>
+<li>Te pasa la conversación cuando hace falta</li>
+<li>Lo probamos juntos antes de ponerlo en marcha</li>
 </ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de atención al cliente (690 € + 79 €/mes)." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Quiero este agente</a>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">El agente atendiendo en tu web a cualquier hora. Es la opción más económica para empezar y la que llevan los packs.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el agente de atención al cliente (690 € + 79 €/mes)." class="btn btn--outline btn--block" target="_blank" rel="noopener noreferrer">Quiero este agente</a>
+</div>
 </article>
 </div>
 
-<div class="maintenance-block" data-reveal>
-<div class="maintenance-block__header">
+<div class="aside-block">
 <h4>Agente a medida — precio acordado</h4>
-<p>Para lo que tu negocio necesite y no encaje en los tres anteriores. Analizamos juntos qué tiene que hacer y con qué herramientas se tiene que conectar, y el precio se acuerda antes de empezar.</p>
-</div>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me gustaría pedir presupuesto para un agente de IA a medida." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Pedir presupuesto</a>
+<p>Para lo que tu negocio necesite y no encaje en los tres anteriores. Analizamos juntos qué tiene que hacer el agente y con qué herramientas se tiene que conectar, y el precio se acuerda antes de empezar.</p>
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me gustaría pedir presupuesto para un agente de IA a medida." class="btn btn--outline" target="_blank" rel="noopener noreferrer">Pedir presupuesto</a>
 </div>
 
-<p class="pricing-footnote">Integraciones complejas o un volumen de uso muy alto pueden requerir un presupuesto personalizado.</p>
+<p class="sheet-note">Integraciones complejas o un volumen de uso muy alto pueden requerir un presupuesto personalizado.</p>
+</div>
+
+<!-- Webs -->
+<div class="tabs__panel" role="tabpanel" id="precios-webs" aria-labelledby="tab-precios-webs">
+<h3 class="tabs__panel-title">Webs</h3>
+<p class="tabs__intro">Pago único por el diseño y el desarrollo. El mantenimiento es opcional: al terminar puedes quedarte con los archivos y gestionarla tú.</p>
+
+<div class="plans">
+<article class="plan">
+<div class="plan__h">
+<div class="plan__name"><h4>Sencilla</h4></div>
+<p class="plan__desc">Para tener presencia online y un sitio al que enviar a tus clientes.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">99 €</span>
+<p class="plan__terms">Pago único</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Negocios que todavía no tienen web y necesitan algo correcto, rápido y sin complicaciones.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Página web informativa</li>
+<li>Diseño adaptado a móvil, tablet y ordenador</li>
+<li>Las secciones esenciales de tu negocio</li>
+<li>Botón de contacto directo e integración con WhatsApp</li>
+<li>Preparación y publicación de los archivos</li>
+</ul>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">La web publicada y todos los archivos del proyecto.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el plan Sencilla (99 €) para mi página web." class="btn btn--outline btn--block" target="_blank" rel="noopener noreferrer">Elegir Sencilla</a>
+</div>
+</article>
+
+<article class="plan plan--best">
+<div class="plan__h">
+<div class="plan__name"><h4>Medium</h4><span class="plan__flag">Recomendada</span></div>
+<p class="plan__desc">Diseño a medida con todo lo necesario para que la web trabaje a tu favor.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">199 €</span>
+<p class="plan__terms">Pago único</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Negocios que quieren una web propia, con varias secciones y un diseño que no parezca una plantilla.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Todo lo del plan Sencilla</li>
+<li>Diseño personalizado con varias secciones</li>
+<li>Animaciones y microinteracciones</li>
+<li>Galería de imágenes y enlaces a redes sociales</li>
+<li>Formulario o elementos de contacto</li>
+<li>SEO básico, velocidad y código mantenible</li>
+</ul>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">La web publicada, los archivos del proyecto y un diseño hecho para tu negocio, no reutilizado.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el plan Medium (199 €) para mi página web." class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Elegir Medium</a>
+</div>
+</article>
+
+<article class="plan">
+<div class="plan__h">
+<div class="plan__name"><h4>Premium</h4></div>
+<p class="plan__desc">Máxima personalización para proyectos más completos.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">399 €</span>
+<p class="plan__terms">Pago único</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Proyectos con catálogo, muchas secciones o necesidades concretas que requieren más trabajo de diseño y desarrollo.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Todo lo del plan Medium</li>
+<li>Diseño 100 % personalizado</li>
+<li>Animaciones más avanzadas</li>
+<li>Galerías o catálogos de productos y servicios</li>
+<li>SEO más completo y optimización de rendimiento</li>
+<li>Integraciones externas cuando sean apropiadas*</li>
+<li>Revisiones y ajustes incluidos</li>
+</ul>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">La web publicada, los archivos y las revisiones acordadas incluidas en el precio.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el plan Premium (399 €) para mi página web." class="btn btn--outline btn--block" target="_blank" rel="noopener noreferrer">Elegir Premium</a>
+</div>
+</article>
+</div>
+
+<p class="sheet-note">*Las funcionalidades que requieran servidor propio, base de datos o pagos online se presupuestan aparte.</p>
+
+<div class="aside-block">
+<h4>Mantenimiento de la web — 30 €/mes, opcional</h4>
+<p>Cuando termino tu web, tú decides. Las dos opciones son válidas y ninguna te ata.</p>
+<div class="options">
+<div class="option">
+<span class="option__k">Opción A</span>
+<h5>Te entrego los archivos</h5>
+<p>Recibes todo lo necesario para alojar y gestionar tu web por tu cuenta. Sin cuotas y sin depender de mí.</p>
+</div>
+<div class="option">
+<span class="option__k">Opción B</span>
+<h5>Me encargo yo, 30 €/mes</h5>
+<p>Actualizo contenido, cambio textos e imágenes, reviso que todo funcione y hago pequeños ajustes. Los rediseños o las funciones nuevas se presupuestan aparte.</p>
+</div>
+</div>
+</div>
 </div>
 
 <!-- Packs -->
 <div class="tabs__panel" role="tabpanel" id="precios-packs" aria-labelledby="tab-precios-packs">
 <h3 class="tabs__panel-title">Packs web + agente</h3>
-<p class="tabs__panel-intro">Combina tu web con el agente de atención al cliente y ahorra en el pago inicial y en el mantenimiento. Si prefieres el de captación o el de reservas, se cambia pagando la diferencia.</p>
-<div class="pricing-grid">
-<article class="pricing-card pack-card" data-reveal data-spotlight data-tilt>
-<h4>Sencilla + Agente</h4>
-<p class="pricing-card__desc">Presencia online y un asistente que atiende por ti.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">690 €</span><span class="pricing-card__monthly">+ 89 €/mes</span></p>
-<p class="pack-card__compare">Por separado: <s>789 € + 109 €/mes</s></p>
-<span class="pack-card__saving">Ahorras 99 € + 20 €/mes</span>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Web Sencilla</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Agente de atención al cliente</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Mantenimiento de la web y del agente</li>
+<p class="tabs__intro">Combina tu web con el agente de atención al cliente y ahorra en el pago inicial y en la cuota mensual. Si prefieres el de captación o el de reservas, se cambia pagando la diferencia.</p>
+
+<div class="plans">
+<article class="plan">
+<div class="plan__h">
+<div class="plan__name"><h4>Sencilla + Agente</h4></div>
+<p class="plan__desc">Presencia online y un asistente que atiende por ti.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">690 €</span>
+<span class="plan__monthly">+ 89 €/mes</span>
+<p class="plan__was">Por separado: 789 € + 109 €/mes</p>
+<p class="plan__save">Ahorras 99 € y 20 €/mes</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Negocios que empiezan de cero y quieren web y atención automática desde el primer día.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Web Sencilla</li>
+<li>Agente de atención al cliente</li>
+<li>Mantenimiento de la web y del agente</li>
 </ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el pack Sencilla + Agente (690 € + 89 €/mes)." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Elegir este pack</a>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">La web publicada con el agente ya funcionando dentro, y una sola cuota mensual para las dos cosas.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el pack Sencilla + Agente (690 € + 89 €/mes)." class="btn btn--outline btn--block" target="_blank" rel="noopener noreferrer">Elegir este pack</a>
+</div>
 </article>
 
-<article class="pricing-card pack-card pricing-card--featured pricing-card--ai" data-reveal data-reveal-delay="1" data-spotlight data-tilt>
-<span class="pricing-card__badge">Recomendado</span>
-<h4>Medium + Agente</h4>
-<p class="pricing-card__desc">Web completa con varias secciones y un agente trabajando para ti.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">790 €</span><span class="pricing-card__monthly">+ 89 €/mes</span></p>
-<p class="pack-card__compare">Por separado: <s>889 € + 109 €/mes</s></p>
-<span class="pack-card__saving">Ahorras 99 € + 20 €/mes</span>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Web Medium</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Agente de atención al cliente</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Agente integrado en el diseño de tu web</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Mantenimiento de la web y del agente</li>
+<article class="plan plan--best">
+<div class="plan__h">
+<div class="plan__name"><h4>Medium + Agente</h4><span class="plan__flag">Recomendado</span></div>
+<p class="plan__desc">Web completa con varias secciones y un agente trabajando dentro.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">790 €</span>
+<span class="plan__monthly">+ 89 €/mes</span>
+<p class="plan__was">Por separado: 889 € + 109 €/mes</p>
+<p class="plan__save">Ahorras 99 € y 20 €/mes</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">La combinación que recomiendo a la mayoría: una web con criterio y el agente integrado en su diseño.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Web Medium</li>
+<li>Agente de atención al cliente</li>
+<li>Agente integrado en el diseño de tu web</li>
+<li>Mantenimiento de la web y del agente</li>
 </ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el pack Medium + Agente (790 € + 89 €/mes)." class="btn btn--primary" target="_blank" rel="noopener noreferrer">Elegir este pack</a>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">La web publicada, los archivos del proyecto y el agente integrado, no pegado encima.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el pack Medium + Agente (790 € + 89 €/mes)." class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Elegir este pack</a>
+</div>
 </article>
 
-<article class="pricing-card pack-card" data-reveal data-reveal-delay="2" data-spotlight data-tilt>
-<h4>Premium + Agente</h4>
-<p class="pricing-card__desc">Máxima personalización, con tu agente integrado.</p>
-<p class="pricing-card__price"><span class="pricing-card__amount">950 €</span><span class="pricing-card__monthly">+ 89 €/mes</span></p>
-<p class="pack-card__compare">Por separado: <s>1.089 € + 109 €/mes</s></p>
-<span class="pack-card__saving">Ahorras 139 € + 20 €/mes</span>
-<ul class="pricing-card__features">
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Web Premium</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Agente de atención al cliente</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Agente integrado en el diseño de tu web</li>
-<li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>Mantenimiento de la web y del agente</li>
+<article class="plan">
+<div class="plan__h">
+<div class="plan__name"><h4>Premium + Agente</h4></div>
+<p class="plan__desc">Máxima personalización, con tu agente integrado.</p>
+</div>
+<div class="plan__price">
+<span class="plan__amount">950 €</span>
+<span class="plan__monthly">+ 89 €/mes</span>
+<p class="plan__was">Por separado: 1.089 € + 109 €/mes</p>
+<p class="plan__save">Ahorras 139 € y 20 €/mes</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Para quién</span>
+<p class="plan__v">Proyectos con catálogo o necesidades concretas que además quieren atención automática.</p>
+</div>
+<div class="plan__group">
+<span class="plan__k">Incluye</span>
+<ul class="plan__features">
+<li>Web Premium</li>
+<li>Agente de atención al cliente</li>
+<li>Agente integrado en el diseño de tu web</li>
+<li>Mantenimiento de la web y del agente</li>
 </ul>
-<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el pack Premium + Agente (950 € + 89 €/mes)." class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Elegir este pack</a>
+</div>
+<div class="plan__group">
+<span class="plan__k">Qué recibes</span>
+<p class="plan__v">El proyecto completo publicado, los archivos y las revisiones acordadas.</p>
+</div>
+<div class="plan__cta">
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, me interesa el pack Premium + Agente (950 € + 89 €/mes)." class="btn btn--outline btn--block" target="_blank" rel="noopener noreferrer">Elegir este pack</a>
+</div>
 </article>
 </div>
-<p class="pricing-footnote">Precio “por separado” calculado con el agente de atención al cliente (690 € + 79 €/mes) y el mantenimiento de la web (30 €/mes). Cambiarlo por el de captación o el de reservas cuesta la diferencia.</p>
+
+<p class="sheet-note">El precio «por separado» está calculado con el agente de atención al cliente (690 € + 79 €/mes) y el mantenimiento de la web (30 €/mes). Cambiarlo por el de captación o el de reservas cuesta la diferencia.</p>
 </div>
 </div>
 
-<p class="transparency-note">Los precios son orientativos. Un proyecto con necesidades especiales puede requerir un presupuesto personalizado.</p>
+<p class="transparency">Los precios son orientativos y sirven de referencia para empezar a hablar: un proyecto con necesidades especiales puede requerir un presupuesto personalizado. En cualquier caso, el precio final se acuerda y se cierra antes de que empiece a trabajar.</p>
 </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section section--alt" id="faq">
+<section class="section" id="faq">
 <div class="container container--narrow">
-<div class="section__header section__header--center" data-reveal>
-<p class="eyebrow">Preguntas frecuentes</p>
-<h2>Resolviendo dudas</h2>
+<div class="section__head">
+<p class="marker">Preguntas frecuentes</p>
+<div class="section__head-body">
+<h2>Lo que me preguntan antes de contratar</h2>
+</div>
 </div>
 
-<div class="tabs tabs--center" data-tabs>
+<div class="tabs" data-tabs>
 <div class="tabs__list" role="tablist" aria-label="Tema de las preguntas">
 <button type="button" class="tabs__tab" role="tab" id="tab-faq-agentes" aria-controls="faq-agentes" aria-selected="true">Agentes de IA</button>
 <button type="button" class="tabs__tab" role="tab" id="tab-faq-webs" aria-controls="faq-webs" aria-selected="false" tabindex="-1">Webs</button>
-<span class="tabs__indicator" aria-hidden="true"></span>
+</div>
+
+<div class="tabs__panel" role="tabpanel" id="faq-agentes" aria-labelledby="tab-faq-agentes">
+<h3 class="tabs__panel-title">Sobre los agentes de IA</h3>
+<div class="faq-list">
+<details name="faq-agentes" class="faq-item">
+<summary>¿Qué es exactamente un agente de IA?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>Un asistente que conversa por escrito con tus clientes —por ejemplo, en tu web— usando la información de tu negocio. No es un formulario ni un menú de botones: entiende lo que le preguntan y responde con naturalidad.</p></div>
+</details>
+<details name="faq-agentes" class="faq-item">
+<summary>¿Puede equivocarse?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>Sí, como cualquier sistema. Por eso lo preparo solo con la información de tu negocio, lo probamos juntos antes de ponerlo en marcha y está pensado para pasarte la conversación cuando no tiene clara la respuesta.</p></div>
+</details>
+<details name="faq-agentes" class="faq-item">
+<summary>¿Necesito tener web para tener un agente?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>No necesariamente. Si ya tienes web, normalmente se puede integrar en ella. Si no tienes, puedes contratarlo junto a una web nueva con uno de los packs, que además sale más barato.</p></div>
+</details>
+<details name="faq-agentes" class="faq-item">
+<summary>¿Cuánto tarda en estar listo un agente?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>Depende de lo que tenga que hacer y de la información de tu negocio que haya que preparar. Te doy un plazo orientativo en cuanto lo hablamos.</p></div>
+</details>
+<details name="faq-agentes" class="faq-item">
+<summary>¿Qué incluye el mantenimiento mensual del agente?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>Que el agente siga funcionando, actualizar su información cuando cambie algo en tu negocio —horarios, precios, servicios— y hacer pequeños ajustes. Los cambios grandes o las funciones nuevas se presupuestan aparte.</p></div>
+</details>
+<details name="faq-agentes" class="faq-item">
+<summary>¿Cuánto cuesta un agente a medida?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>Depende de lo que tenga que hacer y de con qué herramientas tenga que conectarse. Me cuentas qué necesitas y acordamos el precio antes de empezar.</p></div>
+</details>
+<details name="faq-agentes" class="faq-item">
+<summary>¿Qué pasa con los datos de mis clientes?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
+<div class="faq-item__answer"><p>El agente solo recoge los datos que necesita para su tarea, y antes de ponerlo en marcha te explico dónde se guardan y cómo se tratan. Si tu negocio tiene requisitos especiales, se tienen en cuenta desde el principio.</p></div>
+</details>
+</div>
 </div>
 
 <div class="tabs__panel" role="tabpanel" id="faq-webs" aria-labelledby="tab-faq-webs">
@@ -802,78 +1017,51 @@ Ingeniería Informática
 </details>
 </div>
 </div>
-
-<div class="tabs__panel" role="tabpanel" id="faq-agentes" aria-labelledby="tab-faq-agentes">
-<h3 class="tabs__panel-title">Sobre los agentes de IA</h3>
-<div class="faq-list">
-<details name="faq-agentes" class="faq-item">
-<summary>¿Qué es exactamente un agente de IA?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>Un asistente que conversa por escrito con tus clientes —por ejemplo, en tu web— usando la información de tu negocio. No es un formulario ni un menú de botones: entiende lo que le preguntan y responde con naturalidad.</p></div>
-</details>
-<details name="faq-agentes" class="faq-item">
-<summary>¿Puede equivocarse?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>Sí, como cualquier sistema. Por eso lo preparo solo con la información de tu negocio, lo probamos juntos antes de ponerlo en marcha y está pensado para pasarte la conversación cuando no tiene clara la respuesta.</p></div>
-</details>
-<details name="faq-agentes" class="faq-item">
-<summary>¿Necesito tener web para tener un agente?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>No necesariamente. Si ya tienes web, normalmente se puede integrar en ella. Si no tienes, puedes contratarlo junto a una web nueva con uno de los packs, que además sale más barato.</p></div>
-</details>
-<details name="faq-agentes" class="faq-item">
-<summary>¿Cuánto tarda en estar listo un agente?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>Depende de lo que tenga que hacer y de la información de tu negocio que haya que preparar. Te doy un plazo orientativo en cuanto lo hablamos.</p></div>
-</details>
-<details name="faq-agentes" class="faq-item">
-<summary>¿Qué incluye el mantenimiento mensual del agente?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>Que el agente siga funcionando, actualizar su información cuando cambie algo en tu negocio —horarios, precios, servicios— y hacer pequeños ajustes. Los cambios grandes o las funciones nuevas se presupuestan aparte.</p></div>
-</details>
-<details name="faq-agentes" class="faq-item">
-<summary>¿Cuánto cuesta un agente a medida?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>Depende de lo que tenga que hacer y de con qué herramientas tenga que conectarse. Me cuentas qué necesitas y acordamos el precio antes de empezar.</p></div>
-</details>
-<details name="faq-agentes" class="faq-item">
-<summary>¿Qué pasa con los datos de mis clientes?<svg class="icon faq-item__chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg></summary>
-<div class="faq-item__answer"><p>El agente solo recoge los datos que necesita para su tarea, y antes de ponerlo en marcha te explico dónde se guardan y cómo se tratan. Si tu negocio tiene requisitos especiales, se tienen en cuenta desde el principio.</p></div>
-</details>
-</div>
-</div>
 </div>
 
-<p class="faq-cta">¿Tienes alguna otra pregunta? <a href="https://wa.me/34658953935" data-wa="Hola Raúl, tengo una pregunta sobre tus servicios." target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp</a></p>
+<p class="faq-cta">¿Te queda alguna duda? <a href="https://wa.me/34658953935" class="link-u" data-wa="Hola Raúl, tengo una pregunta sobre tus servicios." target="_blank" rel="noopener noreferrer">Pregúntame por WhatsApp</a> y te contesto yo.</p>
 </div>
 </section>
 
-<!-- ============ CONTACTO / CTA FINAL ============ -->
-<section class="section section--contact" id="contacto">
-<div class="contact__bg" aria-hidden="true">
-<span class="contact__orb" data-parallax="0.25"></span>
-</div>
+<!-- ============ CONTACTO ============ -->
+<section class="section section--pine" id="contacto">
 <div class="container">
-<div class="section__header section__header--center" data-reveal>
-<p class="eyebrow">Contacto</p>
-<h2>¿Tienes un proyecto en mente?</h2>
-<p class="section__intro">Cuéntame qué necesitas —una web, un agente de IA o las dos cosas— y vemos juntos cómo hacerlo. Te respondo lo antes posible.</p>
+<div class="section__head">
+<p class="marker marker--pine">Contacto</p>
+<div class="section__head-body">
+<h2>Cuéntame qué necesitas</h2>
+<p class="lead">Una web, un agente de IA o las dos cosas. Me dices a qué se dedica tu negocio y qué quieres conseguir, y te digo qué haría yo, cuánto costaría y cuánto tardaría. Sin compromiso.</p>
+</div>
 </div>
 
-<div class="contact-grid">
-<a class="contact-card" href="https://wa.me/34658953935" data-wa="Hola Raúl, tengo un proyecto en mente y me gustaría contarte más." target="_blank" rel="noopener noreferrer" data-reveal data-spotlight>
-<span class="contact-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg></span>
-<h3>WhatsApp</h3>
-<p>+34 658 95 39 35</p>
-<span class="contact-card__cta">Abrir chat<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
+<div class="channels">
+<a class="channel" href="https://wa.me/34658953935" data-wa="Hola Raúl, tengo un proyecto en mente y me gustaría contarte más." target="_blank" rel="noopener noreferrer">
+<svg class="icon channel__icon" aria-hidden="true"><use href="#icon-chat"/></svg>
+<span class="channel__body">
+<span class="channel__k">WhatsApp · lo más rápido</span>
+<span class="channel__v">+34 658 95 39 35</span>
+</span>
+<span class="channel__go">Abrir chat</span>
 </a>
-<a class="contact-card" href="https://www.instagram.com/rauulg_20/" target="_blank" rel="noopener noreferrer" data-reveal data-reveal-delay="1" data-spotlight>
-<span class="contact-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"/></svg></span>
-<h3>Instagram</h3>
-<p>@rauulg_20</p>
-<span class="contact-card__cta">Ver perfil<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
+<a class="channel" href="mailto:rauul.digital@gmail.com?subject=Quiero%20una%20p%C3%A1gina%20web%20o%20un%20agente%20de%20IA">
+<svg class="icon channel__icon" aria-hidden="true"><use href="#icon-mail"/></svg>
+<span class="channel__body">
+<span class="channel__k">Email · para contarlo con detalle</span>
+<span class="channel__v">rauul.digital@gmail.com</span>
+</span>
+<span class="channel__go">Escribir</span>
 </a>
-<a class="contact-card" href="mailto:rauul.digital@gmail.com?subject=Quiero%20una%20p%C3%A1gina%20web%20o%20un%20agente%20de%20IA" data-reveal data-reveal-delay="2" data-spotlight>
-<span class="contact-card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg></span>
-<h3>Email</h3>
-<p>rauul.digital@gmail.com</p>
-<span class="contact-card__cta">Enviar email<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
+<a class="channel" href="https://www.instagram.com/rauulg_20/" target="_blank" rel="noopener noreferrer">
+<svg class="icon channel__icon" aria-hidden="true"><use href="#icon-instagram"/></svg>
+<span class="channel__body">
+<span class="channel__k">Instagram · para ver qué publico</span>
+<span class="channel__v">@rauulg_20</span>
+</span>
+<span class="channel__go">Ver perfil</span>
 </a>
 </div>
+
+<p class="note contact__after">Si prefieres probar antes de escribir, el asistente de esta web responde a las dudas sobre servicios y precios — y es exactamente el producto que instalo.</p>
 </div>
 </section>
 
@@ -883,32 +1071,38 @@ Ingeniería Informática
 <div class="container footer__inner">
 <div class="footer__brand">
 <a href="#inicio" class="logo">
-<span class="logo__mark">RG</span>
+<span class="logo__mark" aria-hidden="true">RG</span>
 <span class="logo__text">Raúl Gil Gonzalez</span>
 </a>
-<p>Páginas web y agentes de IA</p>
-<p class="footer__location"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg>Cáceres · Extremadura</p>
+<p>Agentes de IA que cualifican los contactos de tu web, y las páginas web donde ponerlos. Cáceres, Extremadura — en remoto para toda España.</p>
 </div>
 
-<nav class="footer__links" aria-label="Enlaces del pie de página">
-<a href="#servicios">Servicios</a>
-<a href="#agentes">Agentes IA</a>
-<a href="#proyectos">Proyectos</a>
-<a href="#precios">Precios</a>
-<a href="#faq">FAQ</a>
+<nav class="footer__col" aria-label="Secciones">
+<h3 class="footer__h">Secciones</h3>
+<ul>
+<li><a href="#sobre-mi">Sobre mí</a></li>
+<li><a href="#servicios">Servicios</a></li>
+<li><a href="#agentes">Agentes de IA</a></li>
+<li><a href="#proyectos">Proyectos</a></li>
+<li><a href="#proceso">Proceso</a></li>
+<li><a href="#precios">Precios</a></li>
+<li><a href="#faq">Preguntas frecuentes</a></li>
+</ul>
 </nav>
 
-<div class="footer__contact">
-<a href="https://wa.me/34658953935" data-wa="" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg></a>
-<a href="https://www.instagram.com/rauulg_20/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"/></svg></a>
-<a href="mailto:rauul.digital@gmail.com" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg></a>
+<div class="footer__col">
+<h3 class="footer__h">Contacto</h3>
+<ul>
+<li><a href="https://wa.me/34658953935" data-wa="Hola Raúl, tengo un proyecto en mente y me gustaría contarte más." target="_blank" rel="noopener noreferrer">WhatsApp · +34 658 95 39 35</a></li>
+<li><a href="mailto:rauul.digital@gmail.com">rauul.digital@gmail.com</a></li>
+<li><a href="https://www.instagram.com/rauulg_20/" target="_blank" rel="noopener noreferrer">Instagram · @rauulg_20</a></li>
+</ul>
 </div>
 </div>
 
 <div class="container footer__bottom">
-<p>© <span id="year">2026</span> Raúl Gil Gonzalez. Todos los derechos reservados.</p>
-<p class="footer__credit">Diseñada y desarrollada por mí.</p>
-<a href="#inicio" class="back-to-top" aria-label="Volver arriba"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"/></svg></a>
+<p>© <span id="year">2026</span> Raúl Gil Gonzalez. Diseñada y desarrollada por mí.</p>
+<a href="#inicio" class="back-to-top">Volver arriba<svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"/></svg></a>
 </div>
 </footer>
 

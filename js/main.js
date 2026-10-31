@@ -1,7 +1,10 @@
 /**
- * Raúl Gil Gonzalez — Páginas web y agentes de IA
+ * Raúl Gil Gonzalez — Agentes de IA y páginas web
  * JS vanilla, sin dependencias. Mejora progresiva: si esto no se ejecuta,
- * la web sigue siendo 100 % funcional y legible (sin animaciones).
+ * la web sigue siendo 100 % funcional y legible (las pestañas se muestran
+ * todas seguidas y no hay animaciones).
+ *
+ * El movimiento es deliberadamente escaso — ver DESIGN.md.
  */
 (function () {
   'use strict';
@@ -14,9 +17,7 @@
   var root = document.documentElement;
   root.classList.add('js');
 
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var motionOK = !reducedMotion;
+  var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (motionOK) root.classList.add('motion');
 
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
@@ -52,24 +53,8 @@
       if (e.key === 'Escape' && isOpen()) { setMenu(false); menuToggle.focus(); }
     });
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 1120 && isOpen()) setMenu(false);
+      if (window.innerWidth >= 1100 && isOpen()) setMenu(false);
     });
-  }
-
-  /* ---------- Aparición al hacer scroll ---------- */
-  var revealEls = $$('[data-reveal]');
-  if ('IntersectionObserver' in window) {
-    var revealObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    revealEls.forEach(function (el) { revealObserver.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
   /* ---------- Enlace activo en la navegación ---------- */
@@ -97,18 +82,11 @@
   $$('[data-tabs]').forEach(function (group) {
     var tabs = $$('[role="tab"]', group);
     if (!tabs.length) return;
-    var indicator = $('.tabs__indicator', group);
     var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
     var current = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
     panels.forEach(function (panel, i) {
       if (panel && hashId && panel.id === hashId) { current = tabs[i]; hashPanel = panel; }
     });
-
-    var moveIndicator = function () {
-      if (!indicator) return;
-      indicator.style.width = current.offsetWidth + 'px';
-      indicator.style.transform = 'translateX(' + current.offsetLeft + 'px)';
-    };
 
     var activate = function (tab, focus) {
       current = tab;
@@ -118,7 +96,6 @@
         t.tabIndex = selected ? 0 : -1;
         if (panels[i]) panels[i].hidden = !selected;
       });
-      moveIndicator();
       if (focus) tab.focus();
     };
 
@@ -134,14 +111,8 @@
       });
     });
 
-    // Estado inicial sin animaciones (ni el indicador ni el color de las pestañas)
-    var instant = tabs.concat(indicator ? [indicator] : []);
-    instant.forEach(function (el) { el.style.transition = 'none'; });
     activate(current);
-    void group.offsetWidth;
-    instant.forEach(function (el) { el.style.transition = ''; });
-
-    tabGroups.push({ tabs: tabs, panels: panels, activate: activate, move: moveIndicator });
+    tabGroups.push({ tabs: tabs, panels: panels, activate: activate });
   });
 
   var activatePanel = function (id) {
@@ -154,7 +125,7 @@
     return null;
   };
 
-  // Enlaces que abren una pestaña concreta (p. ej. "Ver precios de agentes")
+  // Enlaces que abren una pestaña concreta (p. ej. "Precios de agentes")
   $$('[data-tab-target]').forEach(function (link) {
     link.addEventListener('click', function () { activatePanel(link.getAttribute('data-tab-target')); });
   });
@@ -165,154 +136,49 @@
     if (sectionFromHash) setTimeout(function () { sectionFromHash.scrollIntoView(); }, 0);
   }
 
-  // Reajusta el indicador cuando cambian las medidas (tamaño de ventana o carga de fuentes)
-  var refreshIndicators = function () { tabGroups.forEach(function (g) { g.move(); }); };
-  window.addEventListener('resize', refreshIndicators);
-  window.addEventListener('load', refreshIndicators);
-  if (document.fonts) {
-    if (document.fonts.ready) document.fonts.ready.then(refreshIndicators);
-    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', refreshIndicators);
-  }
-
-  /* ---------- Scroll: cabecera, barra de progreso, parallax y banda ---------- */
+  /* ---------- Filete de la cabecera al hacer scroll ---------- */
   var header = $('#site-header');
-  var progress = $('.scroll-progress');
-
-  var parallaxItems = $$('[data-parallax]').map(function (el) {
-    return {
-      el: el,
-      ref: el.parentElement,
-      // En el hero (arriba del todo) el desplazamiento parte de 0 y crece al hacer scroll;
-      // en el resto de secciones es 0 cuando el bloque está centrado en pantalla.
-      fromTop: !!el.closest('.hero'),
-      speed: parseFloat(el.getAttribute('data-parallax')) || 0,
-      max: parseFloat(el.getAttribute('data-parallax-max')) || 140
+  if (header) {
+    var ticking = false;
+    var update = function () {
+      ticking = false;
+      header.classList.toggle('is-scrolled', (window.pageYOffset || root.scrollTop) > 8);
     };
-  });
-
-  var velocity = $('[data-velocity]');
-  var velocityRows = velocity ? $$('[data-velocity-row]', velocity) : [];
-
-  var updateChrome = function () {
-    var y = window.pageYOffset || root.scrollTop;
-    if (header) header.classList.toggle('is-scrolled', y > 8);
-    if (progress) {
-      var max = root.scrollHeight - window.innerHeight;
-      progress.style.setProperty('--progress', max > 0 ? Math.min(y / max, 1).toFixed(4) : '0');
-    }
-  };
-
-  var updateParallax = function (vh) {
-    var scrollY = window.pageYOffset || root.scrollTop;
-    for (var i = 0; i < parallaxItems.length; i++) {
-      var item = parallaxItems[i];
-      var rect = item.ref.getBoundingClientRect();
-      if (rect.bottom < -vh * 0.5 || rect.top > vh * 1.5) continue;
-      var y = item.fromTop
-        ? scrollY * item.speed
-        : -((rect.top + rect.height / 2) - vh / 2) * item.speed;
-      if (y > item.max) y = item.max; else if (y < -item.max) y = -item.max;
-      item.el.style.setProperty('--py', y.toFixed(1) + 'px');
-    }
-  };
-
-  var updateVelocity = function (vh) {
-    if (!velocity) return;
-    var rect = velocity.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > vh) return;
-    var progressInView = (vh - rect.top) / (vh + rect.height); // 0 → 1 mientras cruza la pantalla
-    var shift = (progressInView - 0.5) * Math.min(window.innerWidth, 1400) * 0.55;
-    velocityRows.forEach(function (row) {
-      var factor = parseFloat(row.getAttribute('data-velocity-row')) || 1;
-      row.style.transform = 'translate3d(' + (shift * factor).toFixed(1) + 'px,0,0)';
-    });
-  };
-
-  var ticking = false;
-  var frame = function () {
-    ticking = false;
-    var vh = window.innerHeight;
-    updateChrome();
-    if (motionOK) { updateParallax(vh); updateVelocity(vh); }
-  };
-  var requestFrame = function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(frame); }
-  };
-  window.addEventListener('scroll', requestFrame, { passive: true });
-  window.addEventListener('resize', requestFrame);
-  frame();
-
-  /* ---------- Profundidad con el ratón en el hero ---------- */
-  var stage = $('[data-depth-stage]');
-  if (stage && motionOK && finePointer) {
-    var heroEl = stage.closest('.hero') || stage;
-    var layers = $$('[data-depth]', stage);
-    var target = { x: 0, y: 0 };
-    var currentPos = { x: 0, y: 0 };
-    var depthRaf = null;
-
-    var depthTick = function () {
-      currentPos.x += (target.x - currentPos.x) * 0.08;
-      currentPos.y += (target.y - currentPos.y) * 0.08;
-      layers.forEach(function (layer) {
-        var d = parseFloat(layer.getAttribute('data-depth')) || 1;
-        layer.style.setProperty('--mx', (currentPos.x * d * 7).toFixed(2) + 'px');
-        layer.style.setProperty('--my', (currentPos.y * d * 5).toFixed(2) + 'px');
-      });
-      var settled = Math.abs(target.x - currentPos.x) < 0.002 && Math.abs(target.y - currentPos.y) < 0.002;
-      depthRaf = settled ? null : requestAnimationFrame(depthTick);
-    };
-    var kick = function () { if (!depthRaf) depthRaf = requestAnimationFrame(depthTick); };
-
-    heroEl.addEventListener('pointermove', function (e) {
-      var r = heroEl.getBoundingClientRect();
-      target.x = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      target.y = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      kick();
-    });
-    heroEl.addEventListener('pointerleave', function () { target.x = 0; target.y = 0; kick(); });
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
   }
 
-  /* ---------- Foco de luz e inclinación 3D en tarjetas ---------- */
-  if (finePointer) {
-    $$('[data-spotlight]').forEach(function (card) {
-      var tilt = motionOK && card.hasAttribute('data-tilt');
-      card.addEventListener('pointermove', function (e) {
-        var r = card.getBoundingClientRect();
-        var x = e.clientX - r.left;
-        var y = e.clientY - r.top;
-        card.style.setProperty('--sx', x + 'px');
-        card.style.setProperty('--sy', y + 'px');
-        if (tilt) {
-          card.style.setProperty('--rx', (((y / r.height) - 0.5) * -5).toFixed(2) + 'deg');
-          card.style.setProperty('--ry', (((x / r.width) - 0.5) * 5).toFixed(2) + 'deg');
-        }
+  /* ---------- Hora local en Cáceres ---------- */
+  // Un dato real: si son las 23:40 allí, se entiende por qué hace falta un agente.
+  var clock = $('[data-clock]');
+  var clockTime = $('[data-clock-time]');
+  if (clock && clockTime && window.Intl && Intl.DateTimeFormat) {
+    try {
+      var fmt = new Intl.DateTimeFormat('es-ES', {
+        hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Madrid'
       });
-      if (tilt) {
-        card.addEventListener('pointerleave', function () {
-          card.style.setProperty('--rx', '0deg');
-          card.style.setProperty('--ry', '0deg');
-        });
-      }
-    });
+      var tick = function () { clockTime.textContent = fmt.format(new Date()); };
+      tick();
+      clock.hidden = false;
+      setInterval(tick, 30000);
+    } catch (e) { /* zona horaria no soportada: la hora simplemente no se muestra */ }
   }
 
   /* ---------- Conversación de ejemplo que se escribe sola ---------- */
   // Solo se prepara tras el primer scroll de una persona: así un buscador que
   // renderice la página ve siempre la conversación completa, nunca a medias.
-  var isOnScreen = function (el) {
-    var r = el.getBoundingClientRect();
-    return r.top < window.innerHeight && r.bottom > 0;
-  };
-  var onFirstScroll = function (fn) {
-    window.addEventListener('scroll', fn, { once: true, passive: true });
-  };
-
   var demo = $('[data-chat-demo]');
   if (demo && motionOK && 'IntersectionObserver' in window) {
     var chatBody = $('.chat-demo__body', demo);
     var bubbles = $$('.chat-bubble', demo);
     var typing = $('.chat-typing', demo);
+
+    var isOnScreen = function (el) {
+      var r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
+    };
 
     var play = function () {
       var i = 0;
@@ -337,7 +203,7 @@
       setTimeout(next, 300);
     };
 
-    onFirstScroll(function () {
+    window.addEventListener('scroll', function () {
       if (isOnScreen(demo)) return; // ya a la vista: se queda la conversación completa
       // Reserva el alto final para que el resto de la página no salte
       chatBody.style.minHeight = chatBody.offsetHeight + 'px';
@@ -348,7 +214,7 @@
         });
       }, { threshold: 0.45 });
       demoObserver.observe(demo);
-    });
+    }, { once: true, passive: true });
   }
 
   /* ---------- Año dinámico en el footer ---------- */

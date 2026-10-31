@@ -99,13 +99,13 @@
   panel.hidden = true;
 
   var cabecera = crear('div', 'asistente__cabecera');
-  var avatar = crear('span', 'chat-card__avatar');
+  var avatar = crear('span', 'asistente__avatar');
   avatar.appendChild(icono('icon-bot'));
   var quien = crear('div', 'asistente__quien');
   var titulo = crear('p', 'asistente__titulo', 'Asistente de Raúl');
   titulo.id = 'asistente-titulo';
   var subtitulo = crear('p', 'asistente__subtitulo');
-  var punto = crear('span', 'status-dot status-dot--sm');
+  var punto = crear('span', 'dot dot--sm');
   punto.setAttribute('aria-hidden', 'true');
   subtitulo.appendChild(punto);
   subtitulo.appendChild(document.createTextNode('Agente de IA · responde al momento'));
@@ -179,7 +179,7 @@
 
   /* ---------- Mensajes ---------- */
   var botonReinicio = function () {
-    var b = crear('button', 'btn btn--secondary btn--sm asistente__reiniciar', 'Empezar una conversación nueva');
+    var b = crear('button', 'btn btn--outline btn--sm asistente__reiniciar', 'Empezar una conversación nueva');
     b.type = 'button';
     b.addEventListener('click', reiniciar);
     return b;
@@ -212,7 +212,7 @@
     var aviso = crear('div', 'asistente__aviso');
     aviso.appendChild(crear('p', '', item.texto));
     var enlaces = crear('div', 'asistente__aviso-acciones');
-    var waAviso = crear('a', 'link-arrow', 'Escribir a Raúl por WhatsApp');
+    var waAviso = crear('a', 'link-u', 'Escribir a Raúl por WhatsApp');
     waAviso.href = enlaceWhatsApp('Hola Raúl, vengo de tu web y tengo una pregunta.');
     waAviso.target = '_blank';
     waAviso.rel = 'noopener noreferrer';

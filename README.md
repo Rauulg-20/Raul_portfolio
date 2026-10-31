@@ -1,6 +1,6 @@
-# Raúl Gil Gonzalez — Páginas web y agentes de IA
+# Raúl Gil Gonzalez — Agentes de IA y páginas web
 
-Web personal y comercial de **Raúl Gil Gonzalez**, estudiante de Ingeniería Informática en Cáceres: portfolio, presentación y escaparate de sus dos servicios — **páginas web** y **agentes de IA** para negocios (atención al cliente, captación de clientes y reservas) — con precios, packs, proceso de trabajo, FAQ y contacto.
+Web personal y comercial de **Raúl Gil Gonzalez**, estudiante de Ingeniería Informática en Cáceres: portfolio, presentación y escaparate de sus dos servicios — **agentes de IA** para empresas (captación y clasificación de contactos, reservas y atención al cliente) y **páginas web** — con precios, packs, proceso de trabajo, FAQ y contacto.
 
 **Publicada en:** https://rauulg-20.github.io/Raul_portfolio/
 
@@ -13,29 +13,30 @@ HTML5, CSS3 y JavaScript "vanilla", sin frameworks ni dependencias.
 ¿Por qué no React/Vite? Para una web de una sola página, un stack estático carga más rápido, no necesita compilar nada, no tiene el problema de rutas de una SPA en GitHub Pages y se puede editar un texto o un precio sin instalar nada. Si el proyecto creciera mucho (varias páginas, blog, contenido dinámico) tendría sentido reconsiderarlo.
 
 - **`index.html`** — todo el contenido, con metadatos SEO, Open Graph y datos estructurados (JSON-LD).
-- **`css/styles.css`** — diseño completo con variables CSS (colores, tipografía, espaciados), mobile-first.
+- **`css/styles.css`** — diseño completo con variables CSS (color, tipografía, geometría), mobile-first.
 - **`js/main.js`** — interactividad. Todo es mejora progresiva: si JavaScript no carga, la web se sigue viendo y leyendo entera (las pestañas se muestran todas seguidas y no hay animaciones).
-- **Fuentes**: Space Grotesk (títulos) e Inter (texto), vía Google Fonts.
-- **Iconos**: SVG propios en un sprite al principio de `index.html`.
+- **`DESIGN.md`** — **la dirección de arte y el porqué de cada decisión visual. Léelo antes de cambiar nada del diseño.**
+- **Fuentes**: IBM Plex Sans (texto y títulos, con el display en peso 300) e IBM Plex Mono (cifras, precios, horas y etiquetas), vía Google Fonts.
+- **Iconos**: SVG propios en un sprite al principio de `index.html`. Solo están los que se usan.
 
-### Efectos de movimiento
+### Movimiento
 
-Todo el movimiento está ligado al scroll o al ratón — nada se mueve solo — y se desactiva por completo si el sistema del visitante tiene activado "reducir movimiento".
+El movimiento es deliberadamente escaso: solo hay tres cosas que se mueven, y todas se desactivan si el sistema del visitante tiene activado "reducir movimiento".
 
-| Efecto | Cómo se controla |
-|---|---|
-| Parallax por capas (fondos, ventana de código, chat, foto, captura de Nevila) | Atributo `data-parallax="velocidad"`. Positivo = la capa va más lenta que el scroll (se ve "al fondo"); negativo = más rápida ("delante"). `data-parallax-max="px"` limita el recorrido. |
-| Profundidad con el ratón en el hero (solo escritorio) | `data-depth="n"` en cada capa: cuanto mayor, más se desplaza. |
-| Banda de texto a dos velocidades | `data-velocity-row="factor"` en cada fila (el signo marca la dirección). |
-| Foco de luz e inclinación 3D en tarjetas (solo escritorio) | `data-spotlight` y `data-tilt`. |
-| Aparición al hacer scroll | `data-reveal` (y `data-reveal-delay="1..4"` para escalonar). |
-| Conversación de ejemplo que se escribe sola | Se activa tras el primer scroll de una persona; un buscador que renderice la página ve siempre la conversación completa. |
+| Efecto | Dónde | Cómo se controla |
+|---|---|---|
+| Las filas del parte entran escalonadas, una sola vez | Hero | Clase `.motion` en `<html>` (la pone `js/main.js` si procede) + `animation-delay` por fila |
+| La conversación de ejemplo se escribe sola | Sección Agentes | Se activa tras el primer scroll de una persona; un buscador que renderice la página ve siempre la conversación completa |
+| Estados de `hover` y `focus` | Toda la web | Cambian el filete y el fondo, nunca desplazan el elemento |
+
+No hay parallax, inclinación 3D, foco de luz siguiendo al ratón, banda de texto en marcha ni aparición por scroll en cada sección. Si vas a añadir movimiento, lee antes el apartado correspondiente de `DESIGN.md`.
 
 ## Estructura
 
 ```
 ├── index.html          página principal
 ├── 404.html            página de error 404
+├── DESIGN.md           dirección de arte: color, tipografía, geometría, ritmo
 ├── css/styles.css      estilos
 ├── js/main.js          interactividad
 ├── js/asistente.js     chat del asistente de IA (se activa con la URL del Worker)
@@ -79,8 +80,8 @@ Los textos y precios están escritos directamente en `index.html`; un "buscar en
 | WhatsApp | `34658953935` | `js/main.js` → `WHATSAPP_NUMBER` (lo usan todos los botones de WhatsApp) y los `href` de respaldo en `index.html` y `404.html` |
 | Instagram | `rauulg_20` | Enlaces a Instagram |
 | Email | `rauul.digital@gmail.com` | Botones de email |
-| Precios webs | `99 €`, `199 €`, `399 €`, `30 €/mes` | Pestaña "Webs" de `#precios`, pilar de servicios |
-| Precios agentes | Captación `1.200 €` + `129 €/mes`, reservas `990 €` + `99 €/mes`, atención `690 €` + `79 €/mes` | Nota de `#agentes`, pestaña "Agentes IA", pilar de servicios, bloque editable de `index.html` |
+| Precios webs | `99 €`, `199 €`, `399 €`, `30 €/mes` | Pestaña "Webs" de `#precios`, raíl del servicio "Páginas web" |
+| Precios agentes | Captación `1.200 €` + `129 €/mes`, reservas `990 €` + `99 €/mes`, atención `690 €` + `79 €/mes` | Pestaña "Agentes IA", lista de tipos de agente de `#agentes`, raíl del servicio "Agentes de IA" |
 | Packs | `690 €`, `790 €`, `950 €`, `89 €/mes` y los importes "Por separado" / "Ahorras" | Pestaña "Packs" |
 
 > **Si cambias un precio, cámbialo en los dos sitios.** Los precios también viven dentro
@@ -91,7 +92,7 @@ Los textos y precios están escritos directamente en `index.html`; un "buscar en
 
 **Mensajes de WhatsApp:** cada botón lleva su mensaje predefinido en el atributo `data-wa` (por ejemplo `data-wa="Hola Raúl, me interesa el agente de reservas."`). Para cambiar un mensaje, edita ese texto; si cambias un precio, revisa también el `data-wa` del botón correspondiente, que lo menciona.
 
-**Enlaces directos a pestañas:** `…/Raul_portfolio/#precios-agentes`, `#precios-packs` o `#faq-agentes` abren la página directamente en esa pestaña (útil para mandar por WhatsApp o Instagram).
+**Enlaces directos a pestañas:** `…/Raul_portfolio/#precios-agentes`, `#precios-webs`, `#precios-packs`, `#faq-agentes` o `#faq-webs` abren la página directamente en esa pestaña (útil para mandar por WhatsApp o Instagram).
 
 ### Cambiar la foto o la captura
 
@@ -105,15 +106,21 @@ Si usas otro nombre de archivo, actualiza el `src` correspondiente en `index.htm
 
 La web incluye un chat con IA que responde a los visitantes con la información del negocio y, cuando quieren contratar, les prepara un mensaje para enviarlo por WhatsApp. Funciona con un Worker de Cloudflare que guarda la clave de la API de Claude (GitHub Pages no puede guardar secretos).
 
-Está **desactivado** hasta que despliegues el Worker y pegues su URL en el `data-endpoint` del `<script src="js/asistente.js">` de `index.html`. Pasos, costes y seguridad: **[agente/README.md](agente/README.md)**.
+La URL del Worker va en el `data-endpoint` del `<script src="js/asistente.js">`, al final de `index.html`. Si lo dejas vacío, el asistente queda desactivado. Pasos, costes y seguridad: **[agente/README.md](agente/README.md)**.
+
+Las clases CSS del chat (`asistente__*`, `chat-bubble*`) las genera `js/asistente.js`. **No las renombres en el CSS sin tocar también ese archivo.**
 
 ## Añadir proyectos al portfolio
 
-La sección `#proyectos` tiene la tarjeta destacada de Nevila y debajo una franja "¿Tu web o tu agente, los siguientes?". Para añadir un proyecto:
+La sección `#proyectos` presenta Nevila como un caso de estudio (`<article class="case">`): captura a un lado y, al otro, título, intro, una lista de definición con "El encargo", "Lo que hice" y "Entregado", y las etiquetas de tecnología. Debajo hay una franja "¿El siguiente es el tuyo?".
 
-1. Copia el bloque `<article class="project-card project-card--featured">…</article>`.
-2. Pégalo justo debajo y cambia el título, la descripción, las etiquetas (`<span class="tag">`), la captura y el enlace.
-3. Con dos o más proyectos reales puedes quitar la franja o dejarla al final.
+Para añadir un proyecto, copia el bloque `<article class="case">…</article>`, pégalo debajo y cambia la captura, el título, los textos de la lista y las etiquetas. Con dos o más proyectos puedes separarlos con un filete (`border-top:1px solid var(--hairline)`) o mover la franja al final.
+
+> **El enlace a nevila.es está comentado** en `index.html`, dentro de `.case__foot`. Se
+> retiró porque el dominio no resuelve: Cloudflare devuelve "DNS resolution error" y el
+> certificado TLS falla, así que un cliente que pulsara el botón vería un aviso de
+> seguridad del navegador. Cuando el dominio vuelva a funcionar, descomenta ese bloque y
+> devuelve el "· publicada" al `.case__kind` y a la tarjeta "Proyecto" de la franja de datos.
 
 ## SEO y dominio
 
@@ -122,11 +129,11 @@ La sección `#proyectos` tiene la tarjeta destacada de Nevila y debajo una franj
 
 ## Accesibilidad
 
-- HTML semántico, un único `<h1>`, jerarquía de encabezados correcta.
-- Enlace "saltar al contenido", foco visible, navegación completa con teclado (las pestañas se manejan con las flechas).
+- HTML semántico, un único `<h1>` y jerarquía de encabezados sin saltos de nivel.
+- Enlace "saltar al contenido", foco visible (filete de 2 px en pino), navegación completa con teclado (las pestañas se manejan con las flechas, Inicio y Fin).
 - Menú móvil accesible (`aria-expanded`, cierre con `Esc`).
-- Contraste comprobado en textos y botones.
-- `prefers-reduced-motion` respetado.
+- Contraste comprobado: todos los pares de texto y fondo superan WCAG AA (4,5:1). Los valores están en `DESIGN.md`.
+- `prefers-reduced-motion` respetado, en CSS y en JavaScript.
 
 ## Licencia
 
