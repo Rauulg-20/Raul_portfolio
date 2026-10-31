@@ -24,7 +24,7 @@
 <meta name="description" content="Agentes de IA que conversan con quien entra en tu web, recogen lo que necesita y te lo envían clasificado por urgencia. Para empresas que viven de contactos entrantes. También desarrollo páginas web. Cáceres, en remoto para toda España.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Raúl Gil Gonzalez">
-<meta name="theme-color" content="#F4F2ED">
+<meta name="theme-color" content="#F2EDE3">
 <link rel="canonical" href="https://rauulg-20.github.io/Raul_portfolio/">
 
 <!-- Open Graph -->
@@ -55,7 +55,7 @@
 <!-- Fuentes: IBM Plex Sans (display en 300) + IBM Plex Mono (datos). Ver DESIGN.md -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Serif:ital,wght@1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/styles.css">
 
@@ -84,6 +84,9 @@
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
 
+<!-- Grano de impresión: capa decorativa, nunca intercepta el ratón -->
+<div class="grain" aria-hidden="true"></div>
+
 <!-- ============ SPRITE DE ICONOS ============
      Solo los que se usan. arrow-right, arrow-up, bot, close y plus los
      necesita js/asistente.js; menu y close los necesita js/main.js. -->
@@ -107,7 +110,7 @@
 <header class="site-header" id="site-header">
 <div class="container site-header__inner">
 <a href="#inicio" class="logo" aria-label="Raúl Gil Gonzalez — Inicio">
-<span class="logo__mark" aria-hidden="true">RG</span>
+<span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
 <span class="logo__text">Raúl Gil</span>
 </a>
 
@@ -116,7 +119,7 @@
 <li><a href="#sobre-mi">Sobre mí</a></li>
 <li><a href="#servicios">Servicios</a></li>
 <li><a href="#agentes">Agentes IA</a></li>
-<li><a href="#proyectos">Proyectos</a></li>
+<li><a href="#pruebalo">Pruébalo</a></li>
 <li><a href="#proceso">Proceso</a></li>
 <li><a href="#precios">Precios</a></li>
 <li><a href="#faq">FAQ</a></li>
@@ -139,7 +142,7 @@
 <li><a href="#sobre-mi" data-n="01">Sobre mí</a></li>
 <li><a href="#servicios" data-n="02">Servicios</a></li>
 <li><a href="#agentes" data-n="03">Agentes IA</a></li>
-<li><a href="#proyectos" data-n="04">Proyectos</a></li>
+<li><a href="#pruebalo" data-n="04">Pruébalo</a></li>
 <li><a href="#proceso" data-n="05">Proceso</a></li>
 <li><a href="#precios" data-n="06">Precios</a></li>
 <li><a href="#faq" data-n="07">FAQ</a></li>
@@ -147,7 +150,7 @@
 </ul>
 <div class="mobile-menu__foot">
 <a href="https://wa.me/34658953935" data-wa="Hola Raúl, tengo un proyecto en mente y me gustaría contarte más." class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
-<a href="#contacto" class="btn btn--quiet btn--block">Ver todas las formas de contacto</a>
+<a href="#contacto" class="btn btn--outline btn--block">Ver todas las formas de contacto</a>
 </div>
 </div>
 
@@ -244,8 +247,8 @@
 <span class="fact__v">Ingeniería Informática, Escuela Politécnica de Cáceres.</span>
 </li>
 <li class="fact">
-<span class="fact__k">Proyecto</span>
-<span class="fact__v"><a href="#proyectos">Nevila</a>, tienda online desarrollada y entregada.</span>
+<span class="fact__k">Pruébalo</span>
+<span class="fact__v">El asistente de esta web es <a href="#pruebalo" class="link-u">uno de mis agentes</a>.</span>
 </li>
 <li class="fact">
 <span class="fact__k">Cómo trabajo</span>
@@ -261,7 +264,7 @@
 <div class="section__head">
 <p class="marker">Sobre mí</p>
 <div class="section__head-body">
-<h2>Quién hay detrás</h2>
+<h2>Quién hay <em>detrás</em></h2>
 </div>
 </div>
 
@@ -281,18 +284,18 @@
 </section>
 
 <!-- ============ SERVICIOS ============ -->
-<section class="section section--sunken" id="servicios">
+<section class="section section--green on-dark" id="servicios">
 <div class="container">
 <div class="section__head">
 <p class="marker">Servicios</p>
 <div class="section__head-body">
-<h2>Qué hago</h2>
+<h2>Qué hago, y en <em>qué orden</em></h2>
 <p class="lead">Dos servicios, con un orden claro. Los agentes de IA son el trabajo principal; la web la desarrollo cuando hace falta un sitio donde ponerlo o cuando el que hay no sirve.</p>
 </div>
 </div>
 
 <div class="services">
-<article class="service service--primary">
+<article class="service">
 <div class="service__top">
 <span class="service__n">Principal</span>
 <h3 class="service__title">Agentes de IA</h3>
@@ -393,11 +396,6 @@
 
 <p class="mech__caption">Ejemplo de una conversación y de la ficha que genera. Los datos son inventados para la demostración.</p>
 
-<div class="try" data-asistente-cta hidden>
-<p><strong>Pruébalo aquí mismo.</strong> El asistente de esta web es uno de estos agentes, cargado con mi propia información. Es el mismo producto que instalo.</p>
-<button type="button" class="btn btn--primary" data-open-assistant>Hablar con el asistente</button>
-</div>
-
 <h3 class="visually-hidden">Tipos de agente</h3>
 <div class="agents-list">
 <article class="agent-item">
@@ -450,69 +448,46 @@
 </div>
 </section>
 
-<!-- ============ PROYECTOS ============ -->
-<section class="section section--sunken" id="proyectos">
+<!-- ============ PRUÉBALO ============ -->
+<section class="section section--amber on-dark" id="pruebalo">
 <div class="container">
 <div class="section__head">
-<p class="marker">Proyectos</p>
+<p class="marker">Pruébalo</p>
 <div class="section__head-body">
-<h2>Un proyecto real, entero</h2>
-<p class="lead">Prefiero enseñar un proyecto publicado y funcionando antes que una lista de ejemplos de relleno. Iré añadiendo los siguientes a medida que los termine.</p>
+<h2>El producto está <em>aquí mismo</em></h2>
+<p class="lead">No hace falta que te fíes de una captura de pantalla. El asistente de esta web es uno de mis agentes, cargado con mi propia información. Pregúntale lo que le preguntarías al de tu negocio.</p>
 </div>
 </div>
 
-<article class="case">
-<div class="case__visual">
-<div class="case__chrome" aria-hidden="true">
-<span class="case__url">nevila.es</span>
-</div>
-<img src="assets/proyecto-nevila.png" width="1894" height="899" alt="Captura de la página de inicio de Nevila, tienda online de productos de bienestar y cuidado personal" loading="lazy" decoding="async">
-</div>
-
-<div class="case__body">
-<div class="case__h">
-<h3>Nevila</h3>
-<span class="case__kind">Tienda online</span>
-</div>
-<p class="case__intro">Tienda online de productos de bienestar y cuidado personal: depilación, masaje corporal y cuidado facial.</p>
-
-<dl class="case__dl">
+<div class="try-grid">
 <div>
-<dt>El encargo</dt>
-<dd>Una tienda donde el cliente encuentre lo que busca sin dar vueltas, con un catálogo que crece por categorías.</dd>
+<p class="try__lead">Es el mismo producto que instalo, sin versión de demostración recortada.</p>
+<ul class="try__list">
+<li>Responde con información real: servicios, precios y forma de trabajar.</li>
+<li>Cuando detecta interés de verdad, prepara el mensaje para pasarlo a WhatsApp.</li>
+<li>Si no tiene clara la respuesta, lo dice y deriva, en vez de inventársela.</li>
+<li>Funciona a cualquier hora, también cuando yo no puedo contestar.</li>
+</ul>
+<div class="try__actions">
+<span data-asistente-cta hidden><button type="button" class="btn btn--on-amber btn--lg" data-open-assistant>Abrir el asistente</button></span>
+<a href="https://wa.me/34658953935" data-wa="Hola Raúl, he probado el asistente de tu web y quiero hablar de un proyecto." class="btn btn--outline btn--lg" target="_blank" rel="noopener noreferrer">Preguntarme a mí por WhatsApp</a>
 </div>
-<div>
-<dt>Lo que hice</dt>
-<dd>Estructura del catálogo por categorías, packs de productos combinados y una experiencia de compra pensada para el móvil, que es por donde llega la mayoría del tráfico.</dd>
+<p class="try__fallback">El asistente se abre en la esquina inferior derecha. Si tu navegador bloquea scripts no aparecerá: en ese caso, escríbeme directamente y te contesto yo.</p>
 </div>
-<div>
-<dt>Entregado</dt>
-<dd>La tienda completa, lista para publicar y para seguir creciendo en catálogo.</dd>
-</div>
-</dl>
 
-<div class="case__foot">
-<div class="tags">
-<span class="tag">Tienda online</span>
-<span class="tag">E-commerce</span>
-<span class="tag">Responsive</span>
-<span class="tag">Catálogo</span>
+<div class="try__card">
+<div class="try__card-head">
+<svg class="icon" aria-hidden="true"><use href="#icon-bot"/></svg>
+<strong>Cosas que puedes preguntarle</strong>
 </div>
-<!-- Enlace a la tienda: retirado porque el dominio nevila.es no resuelve
-     (Cloudflare devuelve «DNS resolution error» y el certificado TLS falla).
-     Cuando el dominio vuelva a funcionar, descomenta este bloque:
-<p class="case__visit"><a href="https://nevila.es" class="btn btn--outline" target="_blank" rel="noopener noreferrer">Visitar la tienda<svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg></a></p>
--->
+<ul class="try__qs">
+<li class="try__q">¿Cuánto cuesta una web y qué incluye?</li>
+<li class="try__q">¿Qué diferencia hay entre los tres agentes?</li>
+<li class="try__q">Tengo una clínica dental, ¿cuál me encaja?</li>
+<li class="try__q">¿Qué pasa con los datos de mis clientes?</li>
+</ul>
+<p class="try__note">Conversación real con el agente de atención al cliente. Puede equivocarse: para eso está el botón de hablar conmigo.</p>
 </div>
-</div>
-</article>
-
-<div class="next-up">
-<div class="next-up__text">
-<h3>¿El siguiente es el tuyo?</h3>
-<p>Si quieres que tu web o tu agente sean el próximo proyecto de esta página, cuéntame qué necesitas.</p>
-</div>
-<a href="#contacto" class="btn btn--primary">Hablar de mi proyecto</a>
 </div>
 </div>
 </section>
@@ -523,7 +498,7 @@
 <div class="section__head">
 <p class="marker">Cómo trabajo</p>
 <div class="section__head-body">
-<h2>De la idea a tenerlo funcionando</h2>
+<h2>De la idea a <em>tenerlo funcionando</em></h2>
 <p class="lead">El mismo recorrido para una web, un agente o las dos cosas. En cada paso sabes qué se está haciendo y qué recibes al acabarlo.</p>
 </div>
 </div>
@@ -564,7 +539,7 @@
 <div class="section__head">
 <p class="marker">Precios</p>
 <div class="section__head-body">
-<h2>Precios claros, sin sorpresas</h2>
+<h2>Precios claros, <em>sin sorpresas</em></h2>
 <p class="lead">Agentes de IA, webs o las dos cosas juntas con descuento. Cada opción indica para quién es, qué incluye y qué recibes al terminar. Si tu caso no encaja en ninguna, hablamos y la adaptamos.</p>
 </div>
 </div>
@@ -1024,12 +999,12 @@
 </section>
 
 <!-- ============ CONTACTO ============ -->
-<section class="section section--pine" id="contacto">
+<section class="section section--green on-dark" id="contacto">
 <div class="container">
 <div class="section__head">
-<p class="marker marker--pine">Contacto</p>
+<p class="marker">Contacto</p>
 <div class="section__head-body">
-<h2>Cuéntame qué necesitas</h2>
+<h2>Cuéntame <em>qué necesitas</em></h2>
 <p class="lead">Una web, un agente de IA o las dos cosas. Me dices a qué se dedica tu negocio y qué quieres conseguir, y te digo qué haría yo, cuánto costaría y cuánto tardaría. Sin compromiso.</p>
 </div>
 </div>
@@ -1071,7 +1046,7 @@
 <div class="container footer__inner">
 <div class="footer__brand">
 <a href="#inicio" class="logo">
-<span class="logo__mark" aria-hidden="true">RG</span>
+<span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span>
 <span class="logo__text">Raúl Gil Gonzalez</span>
 </a>
 <p>Agentes de IA que cualifican los contactos de tu web, y las páginas web donde ponerlos. Cáceres, Extremadura — en remoto para toda España.</p>
@@ -1083,7 +1058,7 @@
 <li><a href="#sobre-mi">Sobre mí</a></li>
 <li><a href="#servicios">Servicios</a></li>
 <li><a href="#agentes">Agentes de IA</a></li>
-<li><a href="#proyectos">Proyectos</a></li>
+<li><a href="#pruebalo">Pruébalo</a></li>
 <li><a href="#proceso">Proceso</a></li>
 <li><a href="#precios">Precios</a></li>
 <li><a href="#faq">Preguntas frecuentes</a></li>

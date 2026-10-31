@@ -16,7 +16,7 @@ HTML5, CSS3 y JavaScript "vanilla", sin frameworks ni dependencias.
 - **`css/styles.css`** — diseño completo con variables CSS (color, tipografía, geometría), mobile-first.
 - **`js/main.js`** — interactividad. Todo es mejora progresiva: si JavaScript no carga, la web se sigue viendo y leyendo entera (las pestañas se muestran todas seguidas y no hay animaciones).
 - **`DESIGN.md`** — **la dirección de arte y el porqué de cada decisión visual. Léelo antes de cambiar nada del diseño.**
-- **Fuentes**: IBM Plex Sans (texto y títulos, con el display en peso 300) e IBM Plex Mono (cifras, precios, horas y etiquetas), vía Google Fonts.
+- **Fuentes**: IBM Plex Sans (texto y títulos, con el display en peso 300), IBM Plex Serif cursiva (la palabra acentuada de cada titular) e IBM Plex Mono (cifras, precios, horas y etiquetas), vía Google Fonts.
 - **Iconos**: SVG propios en un sprite al principio de `index.html`. Solo están los que se usan.
 
 ### Movimiento
@@ -26,6 +26,7 @@ El movimiento es deliberadamente escaso: solo hay tres cosas que se mueven, y to
 | Efecto | Dónde | Cómo se controla |
 |---|---|---|
 | Las filas del parte entran escalonadas, una sola vez | Hero | Clase `.motion` en `<html>` (la pone `js/main.js` si procede) + `animation-delay` por fila |
+| La segunda tinta entra desde abajo en los botones | Toda la web | `.btn::before` con `transform:scaleY()` |
 | La conversación de ejemplo se escribe sola | Sección Agentes | Se activa tras el primer scroll de una persona; un buscador que renderice la página ve siempre la conversación completa |
 | Estados de `hover` y `focus` | Toda la web | Cambian el filete y el fondo, nunca desplazan el elemento |
 
@@ -41,7 +42,7 @@ No hay parallax, inclinación 3D, foco de luz siguiendo al ratón, banda de text
 ├── js/main.js          interactividad
 ├── js/asistente.js     chat del asistente de IA (se activa con la URL del Worker)
 ├── agente/             Worker de Cloudflare del asistente (ver agente/README.md)
-├── assets/             favicon, iconos, foto, captura de Nevila, imagen para redes (og-image.png)
+├── assets/             favicon, iconos, foto de perfil, imagen para redes (og-image.png)
 ├── robots.txt
 ├── sitemap.xml
 ├── site.webmanifest
@@ -94,10 +95,9 @@ Los textos y precios están escritos directamente en `index.html`; un "buscar en
 
 **Enlaces directos a pestañas:** `…/Raul_portfolio/#precios-agentes`, `#precios-webs`, `#precios-packs`, `#faq-agentes` o `#faq-webs` abren la página directamente en esa pestaña (útil para mandar por WhatsApp o Instagram).
 
-### Cambiar la foto o la captura
+### Cambiar la foto
 
 - Foto de perfil: `assets/raul-perfil.jpg` (vertical; se recorta a proporción 3:4).
-- Captura de Nevila: `assets/proyecto-nevila.png` (horizontal).
 - Imagen para redes: `assets/og-image.png` (1200 × 630 px).
 
 Si usas otro nombre de archivo, actualiza el `src` correspondiente en `index.html`.
@@ -110,17 +110,21 @@ La URL del Worker va en el `data-endpoint` del `<script src="js/asistente.js">`,
 
 Las clases CSS del chat (`asistente__*`, `chat-bubble*`) las genera `js/asistente.js`. **No las renombres en el CSS sin tocar también ese archivo.**
 
-## Añadir proyectos al portfolio
+## La sección «Pruébalo»
 
-La sección `#proyectos` presenta Nevila como un caso de estudio (`<article class="case">`): captura a un lado y, al otro, título, intro, una lista de definición con "El encargo", "Lo que hice" y "Entregado", y las etiquetas de tecnología. Debajo hay una franja "¿El siguiente es el tuyo?".
+En lugar de una galería de proyectos, la web enseña el producto funcionando:
+la sección `#pruebalo` (campo ámbar) invita a hablar con el asistente, que es
+uno de los agentes que vendo, cargado con mi propia información.
 
-Para añadir un proyecto, copia el bloque `<article class="case">…</article>`, pégalo debajo y cambia la captura, el título, los textos de la lista y las etiquetas. Con dos o más proyectos puedes separarlos con un filete (`border-top:1px solid var(--hairline)`) o mover la franja al final.
+Las preguntas de ejemplo de la tarjeta son texto, no botones: si el asistente
+no carga (JavaScript bloqueado, Worker caído), la sección se sigue entendiendo
+y el botón de WhatsApp funciona igual. El botón «Abrir el asistente» vive
+dentro de un `<span data-asistente-cta hidden>` que solo muestra
+`js/asistente.js` cuando el chat está realmente disponible: así nunca queda un
+botón que no hace nada.
 
-> **El enlace a nevila.es está comentado** en `index.html`, dentro de `.case__foot`. Se
-> retiró porque el dominio no resuelve: Cloudflare devuelve "DNS resolution error" y el
-> certificado TLS falla, así que un cliente que pulsara el botón vería un aviso de
-> seguridad del navegador. Cuando el dominio vuelva a funcionar, descomenta ese bloque y
-> devuelve el "· publicada" al `.case__kind` y a la tarjeta "Proyecto" de la franja de datos.
+Si algún día quieres volver a enseñar proyectos, el sitio natural es entre
+`#agentes` y `#pruebalo`.
 
 ## SEO y dominio
 
