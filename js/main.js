@@ -136,19 +136,78 @@
     if (sectionFromHash) setTimeout(function () { sectionFromHash.scrollIntoView(); }, 0);
   }
 
-  /* ---------- Filete de la cabecera al hacer scroll ---------- */
+  /* ---------- Scroll: filete de la cabecera y carril del proceso ---------- */
   var header = $('#site-header');
-  if (header) {
-    var ticking = false;
-    var update = function () {
-      ticking = false;
-      header.classList.toggle('is-scrolled', (window.pageYOffset || root.scrollTop) > 8);
+  var proceso = $('.process');
+  var pasos = proceso ? $$('.process__step', proceso) : [];
+
+  // El carril solo se anima si hay movimiento permitido. Si no, el CSS lo deja
+  // completo y los marcadores en ámbar: un estado final, no uno a medias.
+  var carrilVivo = !!proceso && pasos.length > 0 && motionOK;
+  if (carrilVivo) proceso.classList.add('is-live');
+
+  // El marcador se centra sobre el carril; para saber dónde está hace falta el
+  // tamaño del marcador (--marca) y el relleno superior del paso, que cambian
+  // con el punto de ruptura. Se miden al cargar y al redimensionar, no en cada
+  // fotograma.
+  var marcaPx = 34, relleno = 24;
+  var medir = function () {
+    if (!carrilVivo) return;
+    var rem = parseFloat(getComputedStyle(root).fontSize) || 16;
+    var m = parseFloat(getComputedStyle(proceso).getPropertyValue('--marca'));
+    if (m) marcaPx = m * rem;
+    var pt = parseFloat(getComputedStyle(pasos[0]).paddingTop);
+    if (pt) relleno = pt;
+  };
+
+  var actualizarCabecera = function () {
+    if (header) header.classList.toggle('is-scrolled', (window.pageYOffset || root.scrollTop) > 8);
+  };
+
+  var actualizarCarril = function () {
+    if (!carrilVivo) return;
+    var limite = window.innerHeight * 0.62; // a partir de aquí un paso cuenta como alcanzado
+    var caja = proceso.getBoundingClientRect();
+    var centro = function (paso) {
+      return paso.getBoundingClientRect().top + relleno + marcaPx / 2;
     };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-  }
+
+    var alcanzados = 0;
+    for (var i = 0; i < pasos.length; i++) {
+      var ok = centro(pasos[i]) < limite;
+      pasos[i].classList.toggle('is-reached', ok);
+      if (ok) alcanzados++;
+    }
+
+    // El relleno del carril llega hasta el último marcador alcanzado.
+    var avance = 0;
+    if (alcanzados === pasos.length) {
+      avance = 1;                                    // proceso recorrido entero
+    } else if (alcanzados > 0) {
+      var arriba = caja.top + marcaPx;               // el carril empieza y acaba
+      var alto = caja.height - marcaPx * 2;          // a la altura de los marcadores
+      if (alto > 0) {
+        avance = (centro(pasos[alcanzados - 1]) - arriba) / alto;
+        if (avance < 0) avance = 0; else if (avance > 1) avance = 1;
+      }
+    }
+    proceso.style.setProperty('--avance', avance.toFixed(4));
+  };
+
+  var pendiente = false;
+  var cuadro = function () {
+    pendiente = false;
+    actualizarCabecera();
+    actualizarCarril();
+  };
+  var pedirCuadro = function () {
+    if (!pendiente) { pendiente = true; requestAnimationFrame(cuadro); }
+  };
+
+  window.addEventListener('scroll', pedirCuadro, { passive: true });
+  window.addEventListener('resize', function () { medir(); pedirCuadro(); });
+  medir();
+  cuadro();
 
   /* ---------- Hora local en Cáceres ---------- */
   // Un dato real: si son las 23:40 allí, se entiende por qué hace falta un agente.

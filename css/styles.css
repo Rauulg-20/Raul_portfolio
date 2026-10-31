@@ -571,27 +571,79 @@ h5{font-size:.9375rem;font-weight:600}
 @media (min-width:900px){ .try-grid{grid-template-columns:1.05fr .95fr;gap:4rem} }
 
 /* 16. PROCESO ================================================================== */
-/* Numeración ordinal grande en ámbar: informa y además compone. */
-.process{counter-reset:paso;border-top:1px solid var(--ink)}
-.process__step{
-  counter-increment:paso;
-  display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem 1.25rem;
-  padding-block:1.6rem;border-bottom:1px solid var(--hairline);
+/* Línea de tiempo con carril que se llena al bajar: el movimiento cuenta el
+   proceso, no adorna. Sin JS (o con «reducir movimiento») el carril aparece
+   completo y los marcadores en ámbar: es un estado final, no uno a medias. */
+.process{
+  --marca:2.125rem;
+  position:relative;counter-reset:paso;
+  padding-left:calc(var(--marca) + 1.125rem);
 }
+/* Vía del carril */
+.process::before{
+  content:'';position:absolute;z-index:0;
+  left:calc(var(--marca)/2 - 1px);top:var(--marca);bottom:var(--marca);
+  width:2px;background:var(--hairline);
+}
+/* Relleno del carril */
+.process::after{
+  content:'';position:absolute;z-index:0;
+  left:calc(var(--marca)/2 - 1px);top:var(--marca);bottom:var(--marca);
+  width:2px;background:var(--amber);
+  transform-origin:50% 0;transform:scaleY(1);
+}
+.process.is-live::after{transform:scaleY(var(--avance,0))}
+
+.process__step{position:relative;counter-increment:paso;padding-block:1.5rem}
+.process__step + .process__step{border-top:1px solid var(--hairline-soft)}
+
+/* El marcador numerado, centrado sobre el carril */
 .process__step::before{
   content:counter(paso,decimal-leading-zero);
-  font-family:var(--font-mono);font-size:1.75rem;line-height:1;color:var(--amber);
-  font-variant-numeric:tabular-nums;
+  position:absolute;z-index:1;
+  left:calc(-1 * (var(--marca) + 1.125rem));top:1.5rem;
+  width:var(--marca);height:var(--marca);
+  display:grid;place-items:center;
+  font-family:var(--font-mono);font-size:.8125rem;font-variant-numeric:tabular-nums;
+  background:var(--amber);border:2px solid var(--amber);color:var(--on-amber);
+  transition:background-color var(--dur-base) var(--ease),
+             border-color var(--dur-base) var(--ease),
+             color var(--dur-base) var(--ease);
 }
-.process__step h3{font-size:1.125rem}
-.process__step p{font-size:.9375rem;line-height:1.55;grid-column:2}
-.process__out{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-subtle);grid-column:2;margin-top:.35rem;padding-left:.75rem;border-left:2px solid var(--amber)}
+.process.is-live .process__step::before{
+  background:var(--paper);border-color:var(--hairline);color:var(--ink-subtle);
+}
+.process.is-live .process__step.is-reached::before{
+  background:var(--amber);border-color:var(--amber);color:var(--on-amber);
+}
+
+.process__body{transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.process.is-live .process__body{opacity:0;transform:translateY(12px)}
+.process.is-live .process__step.is-reached .process__body{opacity:1;transform:none}
+
+.process__body h3{font-size:1.1875rem;margin-bottom:.35rem}
+.process__desc{font-size:.9375rem;line-height:1.55}
+
+/* «Recibes» con la misma etiqueta ámbar que el resto del sistema */
+.process__out{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;
+  font-size:.8125rem;color:var(--ink-subtle);line-height:1.5;margin-top:.8rem;
+}
+.process__out-k{
+  font-family:var(--font-mono);font-size:.6875rem;
+  background:var(--amber);color:var(--on-amber);padding:.1rem .45rem;
+}
 
 @media (min-width:900px){
-  .process__step{grid-template-columns:auto minmax(0,15rem) minmax(0,1fr);align-items:baseline;gap:1rem 2.5rem}
-  .process__step::before{font-size:2.25rem}
-  .process__step p{grid-column:3;grid-row:1}
-  .process__out{grid-column:3;grid-row:2}
+  .process{--marca:2.75rem;padding-left:calc(var(--marca) + 1.75rem)}
+  .process__step{padding-block:1.9rem}
+  .process__step::before{left:calc(-1 * (var(--marca) + 1.75rem));top:1.9rem;font-size:.9375rem}
+  /* Dos columnas: título a la izquierda, explicación a la derecha.
+     Las clases son distintas a propósito: con `p` a secas se pisaban. */
+  .process__body{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:0 3rem;align-items:start}
+  .process__body h3{grid-column:1;grid-row:1;margin-bottom:0}
+  .process__desc{grid-column:2;grid-row:1}
+  .process__out{grid-column:2;grid-row:2;margin-top:.7rem}
 }
 
 /* 17. PESTAÑAS ================================================================== */

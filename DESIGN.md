@@ -118,12 +118,17 @@ sección, columna ancha a la derecha. Nada centrado por defecto.
 
 ## Movimiento
 
-Discreto y motivado. Solo se mueven cuatro cosas:
+Discreto y motivado: cada movimiento dice algo.
 
-1. Las filas del parte entran escalonadas **una vez**, al cargar.
-2. La conversación de ejemplo se escribe sola al entrar en pantalla.
-3. En los botones, la segunda tinta entra **desde abajo** al pasar el ratón.
-4. Los enlaces de texto **engordan** su subrayado, no lo estrenan.
+1. **El carril del proceso.** En «De la idea a tenerlo funcionando», una línea
+   ámbar se va llenando según bajas y los marcadores numerados se encienden al
+   alcanzarlos. El movimiento *es* el proceso: por eso está ahí y no en otra
+   sección. Sin JavaScript o con «reducir movimiento», el carril aparece
+   completo y los marcadores en ámbar — un estado final, nunca uno a medias.
+2. Las filas del parte entran escalonadas **una vez**, al cargar.
+3. La conversación de ejemplo se escribe sola al entrar en pantalla.
+4. En los botones, la segunda tinta entra **desde abajo** al pasar el ratón.
+5. Los enlaces de texto **engordan** su subrayado, no lo estrenan.
 
 No hay parallax, ni inclinación 3D, ni foco de luz, ni banda en marcha, ni
 aparición por scroll en cada sección. Todo se desactiva con

@@ -25,6 +25,7 @@ El movimiento es deliberadamente escaso: solo hay tres cosas que se mueven, y to
 
 | Efecto | Dónde | Cómo se controla |
 |---|---|---|
+| El carril del proceso se llena al bajar y enciende cada marcador | Proceso | `js/main.js` pone `.is-live` en `.process` y `.is-reached` en cada paso, y escribe `--avance`. Sin JS o con movimiento reducido el carril sale completo |
 | Las filas del parte entran escalonadas, una sola vez | Hero | Clase `.motion` en `<html>` (la pone `js/main.js` si procede) + `animation-delay` por fila |
 | La segunda tinta entra desde abajo en los botones | Toda la web | `.btn::before` con `transform:scaleY()` |
 | La conversación de ejemplo se escribe sola | Sección Agentes | Se activa tras el primer scroll de una persona; un buscador que renderice la página ve siempre la conversación completa |
